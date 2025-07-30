@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8" />
+    <title>Global Configurator</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="Home - Page" />
+    <meta property="og:url" content="" />
+    <meta property="og:image" content="/path/to/image" />
+    <meta property="og:type" content="" />
+    <link rel="apple-touch-icon" href="icon.png" />
+    <!-- <link rel="manifest" href="site.webmanifest" /> -->
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <!-- three.js -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.jsdelivr.net/npm/three@0.178.0/build/three.module.js",
+                "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.178.0/examples/jsm/"
+            }
+        }
+    </script>
+  </head>
+  <body>
+    <!-- Content -->
+    <main>
+      <!-- 1st section -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <div class="hero-section-header">
+            <div class="header-logo">
+              <img src="/assets/logo.png" alt="logo" />
+            </div>
+            <div class="hero-section-menu">
+              <div class="hero-section-menu-option">
+                <div>Coverage</div>
+                <img src="/assets/down_arrow.png" alt="arrow" />
+              </div>
+              <div class="hero-section-menu-option">
+                <div>Products</div>
+                <img src="/assets/down_arrow.png" alt="arrow" />
+              </div>
+              <div class="hero-section-menu-option">
+                <div>For Business</div>
+                <img src="/assets/down_arrow.png" alt="arrow" />
+              </div>
+              <div class="hero-section-menu-option">
+                <div>Resources</div>
+                <img src="/assets/down_arrow.png" alt="arrow" />
+              </div>
+              <div class="hero-section-menu-option">Shop</div>
+              <div class="hero-section-menu-option header-map-btn">
+                <img src="/assets/map_pin.png" alt="map" />
+                <div>Installer Locator</div>
+              </div>
+              <div class="hero-section-menu-option header-search">
+                <img src="/assets//search.png" alt="search" />
+              </div>
+            </div>
+          </div>
+          <div class="hero-section-content-wrapper">
+            <div class="hero-section-title-container">
+              <h1 class="hero-section-title">
+                SEE THE POWER OF PROTECTION IN 3D
+              </h1>
+              <h3 class="hero-section-description">
+                <div>Choose your vehicle, apply our films and preview the</div>
+                <div>finish - all in real time 3D</div>
+              </h3>
+              <button
+                onclick="scrollToSection('vechile-type')"
+                class="hero-section-main-btn"
+              >
+                START VISUALISING
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2nd section - select vechile -->
+      <section id="vechile-type" class="select-vechile-section">
+        <h2 class="section-heading">SELECT YOUR VECHILE TYPE</h2>
+        <div class="vechile-section-container">
+          <div onclick="setVechileType('car')" class="sports-car">
+            <img src="/assets/2-section-car-type.jpg" alt="car" width="100%" height="100%"/>
+            <div>
+              Ferrari
+            </div>
+          </div>
+          <div onclick="setVechileType('truck')" class="truck">
+            <img src="/assets/vyber_truck.png" alt="car" width="100%" height="100%"/>
+            <div>
+              Vyber Truck
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3rd section - configurator -->
+      <section id="configurator" class="configurator-section hide">
+        <div class="canvas-wrapper" style="position: relative;">
+          <canvas id="canvas-section" class="canvas-container">
+          </canvas>
+          <!-- back btn -->
+          <button class="back-btn accessibility-options-btn back"
+            onclick="scrollToSection('vechile-type')"
+          >
+            <img src="/assets/back.png" alt="back" />
+            back
+          </button>
+          <!-- accessibility btn -->
+          <div class="accessibility-options">
+            <button class="accessibility-options-btn flip">
+              <img src="/assets/flip.png" alt="flip" />
+            </button>
+            <button class="accessibility-options-btn plus">
+              <img src="/assets/plus.png" alt="plus" />
+            </button>
+            <button class="accessibility-options-btn minus">
+              <img src="/assets/minus.png" alt="minus" />
+            </button>
+          </div>
+          <!-- call container (laptop screens) -->
+           <div class="call-container-wrapper">
+             <div class="call-container-laptop">
+                 <div class="call-btn">
+                   <img src="/assets/call2.png"/>
+                 </div>
+                 <div class="call-num">000-1111-222</div>
+             </div>
+           </div>
+        </div>
+        <!-- menu -->
+        <div class="menu-container">
+          <div class="menu thin-scrollbar">
+            <!-- first selection -->
+            <div class="first-container">
+              <div class="container-heading">Select the Coverage Options</div>
+              <div class="container-subHeading">Choose a coverage area to get started</div>
+              <div id="first" class="container-items">
+                <div id="Full Wrap" onclick="handleOptionSelection('Full Wrap')" class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Full Wrap</div>
+                </div>
+                <div id="Front Wrap" onclick="handleOptionSelection('Front Wrap')" class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Front Wrap</div>
+                </div>
+                <div id="Front Leading Edges" onclick="handleOptionSelection('Front Leading Edges')" class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Front Leading Edges</div>
+                </div>
+                <div id="Door Defence" onclick="handleOptionSelection('Door Defence')" class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Door Defence</div>
+                </div>
+              </div>
+              <hr class="container-end"/>
+            </div>
+            <!-- second selection -->
+            <div class="second-container not-selected">
+              <div class="container-heading">Select Parts</div>
+              <div class="container-subHeading">Choose to get Started</div>
+              <div id="second" class="container-items">
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+              </div>
+              <hr class="container-end"/>
+            </div>
+            <!-- third selection -->
+            <div class="third-container not-selected">
+              <div class="container-heading">Select Tint</div>
+              <div class="container-subHeading">Choose a tint to apply on your vechile</div>
+              <div id="third" class="container-items">
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+                <div class="container-item">
+                  <div class="item-img"></div>
+                  <div class="item-label">Color Name</div>
+                </div>
+              </div>
+              <hr class="container-end"/>
+            </div>
+          </div>
+          <!-- footer -->
+          <div class="menu-footer">
+            <div class="download-container">
+              <div class="download-container-content">
+                <div class="download-text">Download Brochure</div>
+                <div class="download-subText">Click to download</div>
+              </div>
+              <div class="download-icon">
+                <img src="/assets/download.png" 
+                  width="25px" height="25px"/>
+              </div>
+            </div>
+            <div class="footer-btns">
+              <button class="activate-warrenty">Activate E-Warrenty</button>
+              <button class="buy-now-btn">Buy Now</button>
+            </div>
+            <div class="call-container">
+              <div class="call-btn">
+                <img src="/assets/call2.png"/>
+              </div>
+              <div class="call-num">000-1111-222</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4th section - FAQs -->
+      <section class="faqs-section">
+        <h1 class="section-heading">FAQ'S</h1>
+        <div class="faqs-container">
+          <div class="faq">
+            <div class="faq-content">
+              <div class="faq-ques">
+                Can I install Global Paint Protection Film on my vehicle myself?
+              </div>
+              <div class="faq-ans">
+                Yes, but professional installation is highly recommended to
+                ensure proper fit, finish, and long-term performance.
+              </div>
+            </div>
+            <div class="faq-arrow">
+              <img src="/assets/down_arrow.png" alt="down" />
+            </div>
+          </div>
+          <div class="faq">
+            <div class="faq-content">
+              <div class="faq-ques">
+                Can I install Global Paint Protection Film on my vehicle myself?
+              </div>
+              <div class="faq-ans">
+                Yes, but professional installation is highly recommended to
+                ensure proper fit, finish, and long-term performance.
+              </div>
+            </div>
+            <div class="faq-arrow">
+              <img src="/assets/down_arrow.png" alt="down" />
+            </div>
+          </div>
+          <div class="faq">
+            <div class="faq-content">
+              <div class="faq-ques">
+                Can I install Global Paint Protection Film on my vehicle myself?
+              </div>
+              <div class="faq-ans">
+                Yes, but professional installation is highly recommended to
+                ensure proper fit, finish, and long-term performance.
+              </div>
+            </div>
+            <div class="faq-arrow">
+              <img src="/assets/down_arrow.png" alt="down" />
+            </div>
+          </div>
+          <div class="faq active">
+            <div class="faq-content">
+              <div class="faq-ques">
+                Can I install Global Paint Protection Film on my vehicle myself?
+              </div>
+              <div class="faq-ans active">
+                Yes, but professional installation is highly recommended to
+                ensure proper fit, finish, and long-term performance.
+              </div>
+            </div>
+            <div class="faq-arrow active">
+              <img src="/assets/down_arrow.png" alt="down" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5th section - Footer -->
+      <section class="footer">
+        <div class="footer-banner">
+          <div class="banner-item 1">
+            <div class="banner-item-img">
+              <img src="/assets/shop.png" alt="shop" />
+            </div>
+            <div>
+              <div class="banner-item-heading">Shop Now</div>
+              <div class="banner-item-description">
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                aut.
+              </div>
+            </div>
+          </div>
+          <div class="banner-item 2">
+            <div class="banner-item-img">
+              <img src="/assets/warranty.png" alt="warrenty" />
+            </div>
+            <div>
+              <div class="banner-item-heading">E-WARRANTY</div>
+              <div class="banner-item-description">
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                aut.
+              </div>
+            </div>
+          </div>
+          <div class="banner-item 3">
+            <div class="banner-item-img">
+              <img src="/assets/loyality.png" alt="loyality" />
+            </div>
+            <div>
+              <div class="banner-item-heading">LOYALTY PROGRAM</div>
+              <div class="banner-item-description">
+                Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
+                aut.
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-end">
+          <div class="footer-logo header-logo">
+            <img src="/assets/logo.png" alt="logo" />
+          </div>
+          <div class="footer-end-content">
+            <div class="footer-end-content-item one">
+              <div>Paint Protection Films</div>
+              <div>Architectural Films</div>
+              <div>Automotive Window Film</div>
+            </div>
+            <div class="footer-end-content-item two">
+              <div>Privacy Policy</div>
+              <div>Terms and Condition</div>
+            </div>
+            <div class="footer-end-content-item three">
+              Copyright © 2025 Garware Hi-Tech Films. All rights reserved.
+            </div>
+            <div class="footer-end-content-item four">reservered.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- scripts -->
+
+    <script type="module" src="script.js"></script> <!-- three.js setup --->
+
+    <!-- basic functions -->
+    <script>
+      window.vechile_type = null;
+      window.carMenu = {
+        "Full Wrap":{
+          "Parts":[
+            {
+              label:"Part1",
+              img: "",
+              target:[]
+            }
+          ]
+        },
+        "Front Wrap":{
+          "Parts":[
+            {label:"Full Hood",
+              img: "",
+              target:[]
+            },
+            {label:"Full fenders",
+              img: "",
+              target:[]
+            },
+            {label:"Front Bumper",
+              img: "",
+              target:[]
+            },
+            {label:"Side mirrors",
+              img: "",
+              target:[]
+            }
+          ]
+        },
+        "Front Leading Edges":{
+          "Parts":[
+            {label:"Half bonnet",
+              img: "",
+              target:[]
+            },
+            {label:"Front Bumper",
+              img: "",
+              target:[]
+            },
+            {label:"Side mirrors",
+              img: "",
+              target:[]
+            }
+          ]
+        },
+        "Door Defence":{
+          "Parts":[
+            {label:"Door cups",
+              img: "",
+              target:[]
+            },
+            {label:"Door Edge",
+              img: "",
+              target:[]
+            },
+            {label:"Door sill",
+              img: "",
+              target:[]
+            }
+          ]
+        }
+      }
+      window.truckMenu = {
+        "Full Wrap":{
+          "Parts":[
+            {
+              label:"Part1",
+              img: "",
+              target:[]
+            }
+          ]
+        },
+        "Front Wrap":{
+          "Parts":[
+            {label:"Full Hood",
+              img: "",
+              target:[]
+            },
+            {label:"Full fenders",
+              img: "",
+              target:[]
+            },
+            {label:"Front Bumper",
+              img: "",
+              target:[]
+            },
+            {label:"Side mirrors",
+              img: "",
+              target:[]
+            }
+          ]
+        },
+        "Front Leading Edges":{
+          "Parts":[
+            {label:"Half bonnet",
+              img: "",
+              target:[]
+            },
+            {label:"Front Bumper",
+              img: "",
+              target:[]
+            },
+            {label:"Side mirrors",
+              img: "",
+              target:[]
+            }
+          ]
+        },
+        "Door Defence":{
+          "Parts":[
+            {label:"Door cups",
+              img: "",
+              target:[]
+            },
+            {label:"Door Edge",
+              img: "",
+              target:[]
+            },
+            {label:"Door sill",
+              img: "",
+              target:[]
+            }
+          ]
+        }
+      }
+      window.carMaterialMenu = [
+        {label:"Heliodor Yellow", color:"#fff402"},
+        {label:"Carnelion Red", color:"#eb1b11"},
+        {label:"Azurite Blue", color:"#2673d1"},
+        {label:"Eclipse Black Matte", color:"#0e0e0e"},
+        {label:"Lunaris Metallic Silver", color:"#acb7bc"},
+        {label:"Oblivion Black", color:"#0b090a"},
+        {label:"Polaris White", color:"#ffffff"},
+        {label:"Blue", color:"#252656"},
+        {label:"Head Light 50", color:"#302d28"},
+        {label:"Head Light 70", color:"#656565"},
+        {label:"Matte", color:"#fffafe"},
+        {label:"Green", color:"#3a4922"},
+        {label:"Purple", color:"#271631"},
+        {label:"Maroon", color:"#360101"},
+      ]
+      window.truckMaterialMenu = [
+        {label:"Heliodor Yellow", color:"#fff402"},
+        {label:"Carnelion Red", color:"#eb1b11"},
+        {label:"Azurite Blue", color:"#2673d1"},
+        {label:"Eclipse Black Matte", color:"#0e0e0e"},
+        {label:"Lunaris Metallic Silver", color:"#acb7bc"},
+        {label:"Oblivion Black", color:"#0b090a"},
+        {label:"Polaris White", color:"#ffffff"},
+        {label:"Blue", color:"#252656"},
+        {label:"Head Light 50", color:"#302d28"},
+        {label:"Head Light 70", color:"#656565"},
+        {label:"Matte", color:"#fffafe"},
+        {label:"Green", color:"#3a4922"},
+        {label:"Purple", color:"#271631"},
+        {label:"Maroon", color:"#360101"},
+      ]
+      window.selectedOption = null;
+      window.selectedParts = [];
+      window.target = null;
+      window.selectedMaterial = null;
+
+      function handleSelectedMaterial(materialLabel){
+        document.getElementById(window.selectedMaterial)?.querySelector('.item-img')?.classList.remove('selected-item');
+        document.getElementById(materialLabel)?.querySelector('.item-img')?.classList.add('selected-item');
+        window.selectedMaterial = materialLabel;
+        console.log({
+          selectedMaterial: window.selectedMaterial,
+          part: window.selectedParts,
+          option: window.selectedOption,
+          vechile: window.vechile_type
+        });
+      }
+
+      function handlePopulateMaterial(){
+        const selectedParts = window.selectedParts;
+        const materials = window[`${window.vechile_type}MaterialMenu`];
+        const materialContainer = document.getElementsByClassName('third-container')[0];
+        const materialElement = document.getElementById('third');
+        materialElement.innerHTML = ""; // clear previous materials
+        materials.map((material) => {
+          const materialItem = document.createElement("div");
+          materialItem.className = "container-item";
+          materialItem.id = material.label; // set id for easy access
+          materialItem.innerHTML = `
+            <div class="item-img" style="background-color: ${material.color}; border: 1px solid #e0e0e0"></div>
+            <div class="item-label">${material.label}</div>
+          `
+          materialItem.onclick = () => handleSelectedMaterial(material.label);
+          materialElement.appendChild(materialItem);
+        })
+      }
+
+      function handlePartSelection(part){
+        const materialContainer = document.getElementsByClassName('third-container')[0];
+        const partElementImg = document.getElementById(part).querySelector('.item-img');
+        if(window.selectedParts.includes(part)){
+          partElementImg.classList.remove('selected-item');
+          window.selectedParts = window.selectedParts.filter((p) => p !== part);
+        }else{
+          partElementImg.classList.add('selected-item');
+          window.selectedParts = [...window.selectedParts, part];
+        }
+        if(window.selectedParts.length>0){
+          handlePopulateMaterial();  
+          materialContainer.classList.remove('not-selected');   
+        }else{
+          document.getElementById(window.selectedMaterial)?.querySelector('.item-img')?.classList.remove('selected-item');
+          materialContainer.classList.add('not-selected');   
+        }
+      }
+
+      function handlePopulateParts(){
+        const vechile = window.vechile_type;
+        const option = window.selectedOption;
+        const parts = window[`${vechile}Menu`][option].Parts;
+        const partContainer = document.getElementsByClassName('second-container')[0];
+        const partElement = document.getElementById('second');
+        partElement.innerHTML = ""; // clear previous parts
+        if(parts.length===1){
+          window.selectedPart =parts[0].label;
+          partContainer.style.display = "none";
+          handlePopulateMaterial();
+        }else{
+          partContainer.style.display = "block";
+          parts.forEach((part) => {
+            const partItem = document.createElement("div");
+            partItem.className = "container-item";
+            partItem.id = part.label; // set id for easy access
+            partItem.innerHTML = `
+                <div class="item-img"></div>
+                <div class="item-label">${part.label}</div>
+            `
+            partItem.onclick = () => handlePartSelection(part.label);
+            partElement.appendChild(partItem);
+          })}
+          partContainer.classList.remove('not-selected');
+        }
+
+      function handleOptionSelection(option){
+        document.getElementById(window.selectedOption)?.querySelector('.item-img')?.classList.remove('selected-item');
+        document.getElementById(window.selectedMaterial)?.querySelector('.item-img')?.classList.remove('selected-item');
+        if(option){
+          window.selectedOption = option;
+          const container = document.getElementById(window.selectedOption);
+          const imgElement = container.querySelector(".item-img");
+          imgElement.classList.add('selected-item');
+          window.selectedParts = [];
+          window.selectedMaterial = null;
+          handlePopulateParts();
+          if(option!='Full Wrap') document.getElementsByClassName('third-container')[0].classList.add('not-selected');
+          else document.getElementsByClassName('third-container')[0].classList.remove('not-selected');
+        }
+      }
+
+      function scrollToSection(id) {
+        const target = document.getElementById(id);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+
+      function setVechileType(type) {
+        window.vechile_type = type; // make it global for three.js
+        document.getElementById('configurator').classList.remove('hide');
+        document.getElementsByClassName('second-container')[0].classList.add('not-selected');
+        document.getElementsByClassName('third-container')[0].classList.add('not-selected');
+        document.getElementById(window.selectedOption)?.querySelector('.item-img')?.classList.remove('selected-item');
+        window.selectedParts.map((part) => {
+          document.getElementById(part)?.querySelector('.item-img')?.classList.remove('selected-item');
+        });
+        document.getElementById(window.selectedMaterial)?.querySelector('.item-img')?.classList.remove('selected-item');
+        window.selectedOption = null;
+        window.selectedParts = [];  
+        window.selectedMaterial = null;
+        if (window.resizeThreeCanvas) {
+          setTimeout(()=>{
+            window.resizeThreeCanvas();
+          },0)
+        }  
+        scrollToSection("configurator");
+        if(vechile_type=='car'){
+          document.getElementsByClassName('sports-car')[0].style.opacity = "0.4";
+          document.getElementsByClassName('truck')[0].style.opacity = "1";
+        }else{
+          document.getElementsByClassName('sports-car')[0].style.opacity = "1";
+          document.getElementsByClassName('truck')[0].style.opacity = "0.4";
+
+        }
+      }
+
+
+      // faq selection
+      document.querySelectorAll(".faq").forEach((faq) => {
+        faq.addEventListener("click", () => {
+          console.log("clicking");
+
+          // Close all others
+          document.querySelectorAll(".faq").forEach((item) => {
+            if (item !== faq) {
+              item.classList.remove("active"); // remove from .faq
+              item.querySelector(".faq-ans").classList.remove("active");
+              item.querySelector(".faq-arrow").classList.remove("active");
+            }
+          });
+
+          // Toggle current
+          const ans = faq.querySelector(".faq-ans");
+          const arrow = faq.querySelector(".faq-arrow");
+
+          faq.classList.toggle("active"); // <-- Toggle class on .faq
+          ans.classList.toggle("active");
+          arrow.classList.toggle("active");
+        });
+      });
+    </script>
+  </body>
+</html>
