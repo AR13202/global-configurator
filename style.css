@@ -1050,7 +1050,7 @@ button{
         box-shadow: -2px 0 6px -2px rgba(0, 0, 0, 0.1);
     }
     .menu{
-        height: 75%;
+        height: 80%;
     }
     .container-heading, .container-subHeading{
         height: fit-content;
@@ -1065,12 +1065,33 @@ button{
     .item-label{
         font-size: 11px;
     }
+    .container-heading{
+        font-size: 18px;
+    }
+    .container-subHeading{
+        font-size: 14px;
+    }
+    .item-img{
+        width: 90px;
+        height: 90px;
+    }
+    .item-label{
+        font-size: 12px;
+        text-align: center;
+    }
     .menu-footer{
         /* box-shadow: none; */
-        height: 25%;
+        height: 20%;
     }
+
     .download-container{
         height: 50%;
+    }
+    .download-text{
+        font-size: 18px;
+    }
+    .download-subText{
+        font-size: 14px;
     }
     .footer-btns{
         height: 50%;
