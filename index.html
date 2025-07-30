@@ -99,13 +99,13 @@
           <div onclick="setVechileType('car')" class="sports-car">
             <img src="/assets/2-section-car-type.jpg" alt="car" width="100%" height="100%"/>
             <div>
-              Ferrari
+              Ferrari 488 GTB
             </div>
           </div>
           <div onclick="setVechileType('truck')" class="truck">
             <img src="/assets/vyber_truck.png" alt="car" width="100%" height="100%"/>
             <div>
-              Vyber Truck
+              Cyber Truck
             </div>
           </div>
         </div>
@@ -128,10 +128,10 @@
             <button class="accessibility-options-btn flip">
               <img src="/assets/flip.png" alt="flip" />
             </button>
-            <button class="accessibility-options-btn plus">
+            <button onclick="handleIncreaseCameraDistance(-0.5)" class="accessibility-options-btn plus">
               <img src="/assets/plus.png" alt="plus" />
             </button>
-            <button class="accessibility-options-btn minus">
+            <button onclick="handleIncreaseCameraDistance(0.5)" class="accessibility-options-btn minus">
               <img src="/assets/minus.png" alt="minus" />
             </button>
           </div>
@@ -267,48 +267,6 @@
       <section class="faqs-section">
         <h1 class="section-heading">FAQ'S</h1>
         <div class="faqs-container">
-          <div class="faq">
-            <div class="faq-content">
-              <div class="faq-ques">
-                Can I install Global Paint Protection Film on my vehicle myself?
-              </div>
-              <div class="faq-ans">
-                Yes, but professional installation is highly recommended to
-                ensure proper fit, finish, and long-term performance.
-              </div>
-            </div>
-            <div class="faq-arrow">
-              <img src="/assets/down_arrow.png" alt="down" />
-            </div>
-          </div>
-          <div class="faq">
-            <div class="faq-content">
-              <div class="faq-ques">
-                Can I install Global Paint Protection Film on my vehicle myself?
-              </div>
-              <div class="faq-ans">
-                Yes, but professional installation is highly recommended to
-                ensure proper fit, finish, and long-term performance.
-              </div>
-            </div>
-            <div class="faq-arrow">
-              <img src="/assets/down_arrow.png" alt="down" />
-            </div>
-          </div>
-          <div class="faq">
-            <div class="faq-content">
-              <div class="faq-ques">
-                Can I install Global Paint Protection Film on my vehicle myself?
-              </div>
-              <div class="faq-ans">
-                Yes, but professional installation is highly recommended to
-                ensure proper fit, finish, and long-term performance.
-              </div>
-            </div>
-            <div class="faq-arrow">
-              <img src="/assets/down_arrow.png" alt="down" />
-            </div>
-          </div>
           <div class="faq active">
             <div class="faq-content">
               <div class="faq-ques">
@@ -320,6 +278,48 @@
               </div>
             </div>
             <div class="faq-arrow active">
+              <img src="/assets/down_arrow.png" alt="down" />
+            </div>
+          </div>
+          <div class="faq">
+            <div class="faq-content">
+              <div class="faq-ques">
+                Is Global Paint Protection Film removable?
+              </div>
+              <div class="faq-ans">
+                Yes, but professional installation is highly recommended to
+                ensure proper fit, finish, and long-term performance.
+              </div>
+            </div>
+            <div class="faq-arrow">
+              <img src="/assets/down_arrow.png" alt="down" />
+            </div>
+          </div>
+          <div class="faq">
+            <div class="faq-content">
+              <div class="faq-ques">
+                Can you apply Global Paint Protection Film using a dry method?
+              </div>
+              <div class="faq-ans">
+                Yes, but professional installation is highly recommended to
+                ensure proper fit, finish, and long-term performance.
+              </div>
+            </div>
+            <div class="faq-arrow">
+              <img src="/assets/down_arrow.png" alt="down" />
+            </div>
+          </div>
+          <div class="faq">
+            <div class="faq-content">
+              <div class="faq-ques">
+                Can Global Paint Protection Film be applied over custom graphics or decals?
+              </div>
+              <div class="faq-ans">
+                Yes, but professional installation is highly recommended to
+                ensure proper fit, finish, and long-term performance.
+              </div>
+            </div>
+            <div class="faq-arrow">
               <img src="/assets/down_arrow.png" alt="down" />
             </div>
           </div>
@@ -409,19 +409,19 @@
         "Front Wrap":{
           "Parts":[
             {label:"Full Hood",
-              img: "",
+              img: "/assets/Ferrari/1_Full Hood.png",
               target:[]
             },
             {label:"Full fenders",
-              img: "",
+              img: "/assets/Ferrari/1_Full Fender.png",
               target:[]
             },
             {label:"Front Bumper",
-              img: "",
+              img: "/assets/Ferrari/1_Front Bumper.png",
               target:[]
             },
             {label:"Side mirrors",
-              img: "",
+              img: "/assets/Ferrari/1_Side Mirror.png",
               target:[]
             }
           ]
@@ -429,15 +429,15 @@
         "Front Leading Edges":{
           "Parts":[
             {label:"Half bonnet",
-              img: "",
+              img: "./assets/Ferrari/1_Front Bonnet.png",
               target:[]
             },
             {label:"Front Bumper",
-              img: "",
+              img: "/assets/Ferrari/1_Front Bonnet.png",
               target:[]
             },
             {label:"Side mirrors",
-              img: "",
+              img: "/assets/Ferrari/1_Side Mirror.png",
               target:[]
             }
           ]
@@ -445,15 +445,11 @@
         "Door Defence":{
           "Parts":[
             {label:"Door cups",
-              img: "",
+              img: "/assets/Ferrari/1_Door cups.png",
               target:[]
             },
             {label:"Door Edge",
-              img: "",
-              target:[]
-            },
-            {label:"Door sill",
-              img: "",
+              img: "/assets/Ferrari/1_Door Edges.png",
               target:[]
             }
           ]
@@ -472,19 +468,19 @@
         "Front Wrap":{
           "Parts":[
             {label:"Full Hood",
-              img: "",
+              img: "/assets/Tesla Cyber Truck/1_Full Hood.png",
               target:[]
             },
             {label:"Full fenders",
-              img: "",
+              img: "/assets/Tesla Cyber Truck/1_Full Fender.png",
               target:[]
             },
             {label:"Front Bumper",
-              img: "",
+              img: "/assets/Tesla Cyber Truck/1_Front Bumper.png",
               target:[]
             },
             {label:"Side mirrors",
-              img: "",
+              img: "/assets/Tesla Cyber Truck/1_Side Mirror.png",
               target:[]
             }
           ]
@@ -492,33 +488,25 @@
         "Front Leading Edges":{
           "Parts":[
             {label:"Half bonnet",
-              img: "",
+              img: "./assets/Tesla Cyber Truck/1_Front Bonnet.png",
               target:[]
             },
             {label:"Front Bumper",
-              img: "",
+              img: "/assets/Tesla Cyber Truck/1_Front Bonnet.png",
               target:[]
             },
             {label:"Side mirrors",
-              img: "",
+              img: "/assets/Tesla Cyber Truck/1_Side Mirror.png",
               target:[]
             }
           ]
         },
         "Door Defence":{
           "Parts":[
-            {label:"Door cups",
-              img: "",
-              target:[]
-            },
             {label:"Door Edge",
-              img: "",
+              img: "/assets/Tesla Cyber Truck/1_Door Edges.png",
               target:[]
             },
-            {label:"Door sill",
-              img: "",
-              target:[]
-            }
           ]
         }
       }
@@ -616,7 +604,7 @@
         const partContainer = document.getElementsByClassName('second-container')[0];
         const partElement = document.getElementById('second');
         partElement.innerHTML = ""; // clear previous parts
-        if(parts.length===1){
+        if(window.selectedOption=='Full Wrap' && parts.length==1){
           window.selectedPart =parts[0].label;
           partContainer.style.display = "none";
           handlePopulateMaterial();
@@ -627,7 +615,7 @@
             partItem.className = "container-item";
             partItem.id = part.label; // set id for easy access
             partItem.innerHTML = `
-                <div class="item-img"></div>
+                <div class="item-img" style="background-image:url('${part.img}'); background-size:contain; background-position:center;"></div>
                 <div class="item-label">${part.label}</div>
             `
             partItem.onclick = () => handlePartSelection(part.label);
@@ -672,22 +660,50 @@
         window.selectedOption = null;
         window.selectedParts = [];  
         window.selectedMaterial = null;
-        if (window.resizeThreeCanvas) {
-          setTimeout(()=>{
-            window.resizeThreeCanvas();
-          },0)
-        }  
-        scrollToSection("configurator");
         if(vechile_type=='car'){
           document.getElementsByClassName('sports-car')[0].style.opacity = "0.4";
           document.getElementsByClassName('truck')[0].style.opacity = "1";
+          updateOptionImages('Ferrari');
         }else{
           document.getElementsByClassName('sports-car')[0].style.opacity = "1";
           document.getElementsByClassName('truck')[0].style.opacity = "0.4";
-
+          updateOptionImages('Tesla Cyber Truck');
         }
+        if (window.resizeThreeCanvas) {
+          setTimeout(()=>{
+            window.resizeThreeCanvas(type);
+          },0)
+        }  
+        scrollToSection("configurator");
       }
 
+      function updateOptionImages(type){
+          document.getElementById('Full Wrap').querySelector('.item-img').style.backgroundImage = `url('/assets/${type}/0_Full Wrap.png')`;
+          document.getElementById('Full Wrap').querySelector('.item-img').style.backgroundSize = "contain";
+          document.getElementById('Full Wrap').querySelector('.item-img').style.backgroundPosition = "center";
+          document.getElementById('Full Wrap').querySelector('.item-img').style.backgroundRepeat = "no-repeat";
+
+          document.getElementById('Front Wrap').querySelector('.item-img').style.backgroundImage = `url('/assets/${type}/0_Front Wrap.png')`;
+          document.getElementById('Front Wrap').querySelector('.item-img').style.backgroundSize = "contain";
+          document.getElementById('Front Wrap').querySelector('.item-img').style.backgroundPosition = "center";
+          document.getElementById('Front Wrap').querySelector('.item-img').style.backgroundRepeat = "no-repeat";
+
+          document.getElementById('Front Leading Edges').querySelector('.item-img').style.backgroundImage = `url('/assets/${type}/0_Front Leading Edges.png')`;
+          document.getElementById('Front Leading Edges').querySelector('.item-img').style.backgroundSize = "contain";
+          document.getElementById('Front Leading Edges').querySelector('.item-img').style.backgroundPosition = "center";
+          document.getElementById('Front Leading Edges').querySelector('.item-img').style.backgroundRepeat = "no-repeat";
+
+          document.getElementById('Door Defence').querySelector('.item-img').style.backgroundImage = `url('/assets/${type}/0_Door Defence.png')`;
+          document.getElementById('Door Defence').querySelector('.item-img').style.backgroundSize = "contain";
+          document.getElementById('Door Defence').querySelector('.item-img').style.backgroundPosition = "center";
+          document.getElementById('Door Defence').querySelector('.item-img').style.backgroundRepeat = "no-repeat";
+      }
+
+      function handleIncreaseCameraDistance(delta) {
+        if (window.increaseCameraDistance) {
+          window.increaseCameraDistance(delta);
+        }
+      }
 
       // faq selection
       document.querySelectorAll(".faq").forEach((faq) => {
