@@ -97,13 +97,13 @@
         <h2 class="section-heading">SELECT YOUR VECHILE TYPE</h2>
         <div class="vechile-section-container">
           <div onclick="setVechileType('car')" class="sports-car">
-            <img src="/assets/Carnelion_Red.png" alt="car" width="100%" height="100%"/>
+            <img src="/assets/Carnelion Red_3.png" alt="car" width="100%" height="100%"/>
             <div>
               Ferrari 488 GTB
             </div>
           </div>
           <div onclick="setVechileType('truck')" class="truck">
-            <img src="/assets/vyber_truck.png" alt="car" width="100%" height="100%"/>
+            <img src="/assets/Cybertruck.png" alt="car" width="100%" height="100%"/>
             <div>
               Cyber Truck
             </div>
@@ -549,7 +549,7 @@
       window.selectedMaterial = null;
 
       function handleResetToBase(){
-        if(window.vechile_type=='car') window.applyBaseMaterial();
+        window.applyBaseMaterial();
       }
 
       function handleSelectedMaterial(materialLabel){
