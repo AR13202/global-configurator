@@ -3,85 +3,6 @@ import { GLTFLoader } from 'https://unpkg.com/three@0.160.1/examples/jsm/loaders
 import { OrbitControls } from 'https://unpkg.com/three@0.160.1/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from 'https://unpkg.com/three@0.160.1/examples/jsm/loaders/RGBELoader.js';
 
-let isFlipped = false;
-
-const preset = {
-    src: "",
-    parts: {
-        partName: "materialName"
-    },
-};
-
-const sports_car = {
-    src: "",
-    materials: {
-        materialName: {
-
-        }
-    },
-    menu: [
-        {
-            title: "Full Wrap",
-            parts: [],
-            options: [
-                {
-                    label: "",
-                    materialName: "",
-                    image: "",
-                },
-                {
-                    label: "",
-                    materialName: "",
-                    image: "",
-                },
-                {
-                    label: "",
-                    materialName: "",
-                    image: "",
-                },
-                {
-                    label: "",
-                    materialName: "",
-                    image: "",
-                },
-                {
-                    label: "",
-                    materialName: "",
-                    image: "",
-                },
-                {
-                    label: "",
-                    materialName: "",
-                    image: "",
-                },
-                {
-                    label: "",
-                    materialName: "",
-                    image: "",
-                }
-            ]
-        },
-    ]
-}
-
-// update material on model
-function materialUpdate() {
-    if (vechile_type == 'car') {
-
-    } else {
-
-    }
-}
-
-// setDefaultPreset
-function setDefaultPreset() {
-
-}
-// setPrest
-function setPreset(partName, materialName) {
-    preset.parts[partName] = materialName;
-    materialUpdate();
-}
 
 let currentModel = null;
 
@@ -89,8 +10,1242 @@ let currentShadow = null;
 let currentLight = null;
 
 let loadedModels = {
-  car:null,
-  truck:null
+  car: null,
+  truck: null
+}
+
+THREE.TextureLoader.prototype.crossOrigin = "anonymous";
+const textureLoader = new THREE.TextureLoader();
+textureLoader.crossOrigin = "anonymous";
+const textureCache = {};
+
+const materialData = {
+  "car": {
+    "Full_Wrap_Body": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Full_Hood": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Full_Fenders": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Front_Bumper": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Side_Mirrors": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Half_Bonnet": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Door_Cups": {
+      "Heliodor Yellow": {
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "",
+        roughnessMap: "",
+        clearcoatMap: ""
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Door_Edge": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    }
+  },
+  "truck": {
+    "Full_Wrap_Body": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Full_Hood": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Full_Fenders": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Front_Bumper": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Side_Mirrors": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Half_Bonnet": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    },
+    "Door_Edge": {
+      "Heliodor Yellow": {
+        color: "#ffff00",
+        baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Carnelion Red": {
+        color: "#ff0000",
+        baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Azurite Blue": {
+        color: "#2973ff",
+        baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Eclipse Black Matte": {
+        color: "#000000",
+        baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
+        roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
+        clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
+      },
+      "Lunaris Metallic Silver": {
+        color: "#daeaea",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Oblivion Black": {
+        color: "#000000",
+        baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Polaris White": {
+        color: "#ffffff",
+        baseMap: "./assets/Set_1/Polaris_White_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      "Cobalt Blue": {
+        color: "#03144c",
+        baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
+        metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
+        roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
+        clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
+      },
+      
+      
+      "Sparkle Chameleon": {
+        color: "#5c752e",
+        baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Purple": {
+        color: "#2e1633",
+        baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+      "Sparkle Red": {
+        color: "#3c0000",
+        baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
+        metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
+        roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
+        clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
+      },
+    }
+  }
+}
+
+const baseMaterial = {
+  color:"#c40000",
+  baseMap:"./assets/Base_Mat/Base_Mat_Diffuse.png",
+  metalnessMap:"./assets/Base_Mat/Base_Mat_Metalness.png",
+  roughnessMap:"./assets/Base_Mat/Base_Mat_Roughness.png",
+  clearcoatMap:"/assets/Base_Mat/Base_Mat_Clearcoat.png"
 }
 
 // Renderer
@@ -101,7 +1256,9 @@ renderer.setPixelRatio(window.devicePixelRatio);
 
 // ✅ Neutral tone mapping
 renderer.toneMapping = THREE.AgXToneMapping;
-renderer.toneMappingExposure = 1.0; 
+renderer.toneMappingExposure = 0.45;
+
+
 
 // shadows
 renderer.shadowMap.enabled = true;
@@ -206,29 +1363,58 @@ function setupRealShadows(model) {
   currentLight = sunLight;
 }
 
-function preLoadModels(){
-  const carModel = './assets/Ferrari.glb';
-  const truckModel = './assets/CyberTruck.glb';
+// preload models
+let preloadPromise = null;
+function preLoadModels() {
+  if (preloadPromise) return preloadPromise; // prevent duplicate calls
+
   const loader = new GLTFLoader();
-  loader.load(carModel, (gltf) => {
-    loadedModels.car = gltf.scene;
-    console.log("Car model preloaded");
-  }, undefined, (error) => {
-    console.error('Error loading car model:', error);
-  });
-  loader.load(truckModel, (gltf) => {
-    loadedModels.truck = gltf.scene;
-    console.log("Truck model preloaded");
-  }, undefined, (error) => {
-    console.error('Error loading truck model:', error);
-  });
+
+  preloadPromise = Promise.all([
+    new Promise((resolve, reject) => {
+      loader.load('./assets/Ferrari.glb',
+        (gltf) => {
+          loadedModels.car = gltf.scene;
+          console.log("car preloaded")
+          resolve();
+        },
+        undefined,
+        (err) => reject(err)
+      );
+    }),
+    new Promise((resolve, reject) => {
+      loader.load('./assets/CyberTruck.glb',
+        (gltf) => {
+          console.log("truck preloaded")
+          loadedModels.truck = gltf.scene;
+          resolve();
+        },
+        undefined,
+        (err) => reject(err)
+      );
+    })
+  ]);
+  return preloadPromise;
 }
 
-
-function loadModel(type) {
+// load model on canvas on click
+async function loadModel(type) {
   console.log(type, loadedModels[type]);
   removeCurrentModel();
-  const model = loadedModels[type].clone();
+
+  if (!loadedModels[type]) {
+    console.log(`Waiting for preload of ${type}...`);
+    await preLoadModels(); // wait until models ready
+  }
+
+  const model = loadedModels[type];
+  if (!model) {
+    console.error(`Model ${type} not available after preload`);
+    return;
+  }
+  console.log("model", model)
+  removeCurrentModel();
+  // const model = loadedModels[type];
 
   // --- Compute bounding box ---
   const box = new THREE.Box3().setFromObject(model);
@@ -276,7 +1462,6 @@ function loadModel(type) {
   setupRealShadows(model);
 }
 
-
 function removeCurrentModel() {
   if (currentModel) {
     scene.remove(currentModel);
@@ -319,16 +1504,16 @@ function disposeMaterial(material) {
   });
   material.dispose();
 }
- 
+
 
 function resizeRenderer(type) {
-    const {widthFactor, heightFactor} = getWidthAndHeightFactor();
-    const width = canvas.clientWidth || window.innerWidth * widthFactor;
-    const height = canvas.clientHeight || window.innerHeight * heightFactor;
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-    renderer.setSize(width, height);
-    loadModel(type);
+  const { widthFactor, heightFactor } = getWidthAndHeightFactor();
+  const width = canvas.clientWidth || window.innerWidth * widthFactor;
+  const height = canvas.clientHeight || window.innerHeight * heightFactor;
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+  renderer.setSize(width, height);
+  loadModel(type);
 }
 
 
@@ -344,32 +1529,32 @@ window.addEventListener('resize', () => {
 
 // Animation loop
 function animate() {
-    requestAnimationFrame(animate);
-    controls.update();
-    renderer.render(scene, camera);
+  requestAnimationFrame(animate);
+  controls.update();
+  renderer.render(scene, camera);
 }
 
 function getWidthAndHeightFactor() {
-    let widthFactor = 1;
-    let heightFactor = 1;
-    if(window.innerWidth < 600) {
-        heightFactor = 0.35;
-    }else if(window.innerWidth < 1024) {
-        heightFactor = 0.35;
-    } else if(window.innerWidth < 1300) {
-        widthFactor = 0.65;
-        heightFactor = 0.85;
-    } else if(window.innerWidth < 1600) {
-        widthFactor = 0.68;
-        heightFactor = 0.85;
-    }else if(window.innerWidth < 1800) {
-        widthFactor = 0.72;
-        heightFactor = 0.85;
-    } else {
-        widthFactor = 0.72;
-        heightFactor = 0.85;
-    }
-    return { widthFactor, heightFactor };
+  let widthFactor = 1;
+  let heightFactor = 1;
+  if (window.innerWidth < 600) {
+    heightFactor = 0.35;
+  } else if (window.innerWidth < 1024) {
+    heightFactor = 0.35;
+  } else if (window.innerWidth < 1300) {
+    widthFactor = 0.65;
+    heightFactor = 0.85;
+  } else if (window.innerWidth < 1600) {
+    widthFactor = 0.68;
+    heightFactor = 0.85;
+  } else if (window.innerWidth < 1800) {
+    widthFactor = 0.72;
+    heightFactor = 0.85;
+  } else {
+    widthFactor = 0.72;
+    heightFactor = 0.85;
+  }
+  return { widthFactor, heightFactor };
 }
 
 function smoothAdjustCameraDistance(delta = 0.5, duration = 500) {
@@ -408,7 +1593,6 @@ function smoothAdjustCameraDistance(delta = 0.5, duration = 500) {
   requestAnimationFrame(animate);
 }
 
-
 // adding environment map
 const rgbeLoader = new RGBELoader();
 rgbeLoader.load(
@@ -427,8 +1611,102 @@ rgbeLoader.load(
 );
 
 animate();
-preLoadModels();
+preLoadModels().then(() => {
+  // 👇 choose which model to load first
+  loadModel("car");  // or "truck"
+});
+
+function materialUpdate(vechileType, materialName, partName) {
+  if (currentModel) {
+    currentModel.traverse((child) => {
+      if (child.isMesh) {
+        if (child.name == partName) {
+          const material = materialData[vechileType][partName][materialName];
+          if (material) {
+            console.log("updating material for", vechileType, materialName, partName);
+            updateMaterial(material, child.material);
+          }
+        }
+      }
+    });
+  }
+}
+
+const applyCachedTexture = async (url, material, type) => {
+  if (url) {
+      const texture = await textureLoader.loadAsync(url);
+      if (type === "map" || type == "emissiveMap") texture.colorSpace = THREE.LinearSRGBColorSpace
+      texture.flipY = false;
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      textureCache[url] = texture;
+  }
+};
+
+async function updateMaterial(updates, materialRef) {
+  if (!updates) return;
+
+  const {
+    color,
+    baseMap,
+    metalnessMap,
+    roughnessMap,
+    clearcoatMap
+  } = updates;
+
+  if (color) {
+    materialRef.color = new THREE.Color(color);
+  }
+
+
+  // --- Maps ---
+  baseMap
+    ? await applyCachedTexture(baseMap, materialRef, "map")
+    : (materialRef.map = null);
+
+  metalnessMap
+    ? await applyCachedTexture(metalnessMap, materialRef, "metalnessMap")
+    : (materialRef.metalnessMap = null);
+
+  roughnessMap
+    ? await applyCachedTexture(roughnessMap, materialRef, "roughnessMap")
+    : (materialRef.roughnessMap = null);
+
+  clearcoatMap
+    ? await applyCachedTexture(clearcoatMap, materialRef, "clearcoatMap")
+    : (materialRef.clearcoatMap = null);
+
+
+  materialRef.needsUpdate = true;
+}
+
+function applyBaseMaterial(){
+  const targets = [
+                "Full_Hood","Full_Fenders","Side_Mirrors",
+                "Half_Bonnet","Front_Bumper","Door_Cups",
+                "Door_Edge","Full_Wrap_Body"
+              ]
+  if(currentModel)[
+    currentModel.traverse((child)=>{
+      if(child.isMesh){
+        if(targets.includes(child.name)){
+          const material = baseMaterial
+          updateMaterial(material, child.material);
+        }
+      }
+    })
+  ]
+}
 
 window.resizeThreeCanvas = resizeRenderer; // expose globally
 window.getWidthAndHeightFactor = getWidthAndHeightFactor; // expose globally
 window.increaseCameraDistance = smoothAdjustCameraDistance; // expose globally
+window.materialUpdate = materialUpdate; // expose globally
+window.applyBaseMaterial = applyBaseMaterial; //expose globally
+// const newMaterial = new THREE.MeshPhysicalMaterial({
+//   metalnessMap:"",
+//   roughnessMap:"",
+//   clearcoatMap:"",
+//   map:"",
+//   color:""
+// })

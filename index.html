@@ -97,7 +97,7 @@
         <h2 class="section-heading">SELECT YOUR VECHILE TYPE</h2>
         <div class="vechile-section-container">
           <div onclick="setVechileType('car')" class="sports-car">
-            <img src="/assets/2-section-car-type.jpg" alt="car" width="100%" height="100%"/>
+            <img src="/assets/Carnelion_Red.png" alt="car" width="100%" height="100%"/>
             <div>
               Ferrari 488 GTB
             </div>
@@ -125,7 +125,7 @@
           </button>
           <!-- accessibility btn -->
           <div class="accessibility-options">
-            <button class="accessibility-options-btn flip">
+            <button onclick="handleResetToBase()" class="accessibility-options-btn flip">
               <img src="/assets/flip.png" alt="flip" />
             </button>
             <button onclick="handleIncreaseCameraDistance(-0.5)" class="accessibility-options-btn plus">
@@ -402,7 +402,11 @@
             {
               label:"Part1",
               img: "",
-              target:[]
+              target:[
+                "Full_Hood","Full_Fenders","Side_Mirrors",
+                "Half_Bonnet","Front_Bumper","Door_Cups",
+                "Door_Edge","Full_Wrap_Body"
+              ]
             }
           ]
         },
@@ -410,19 +414,19 @@
           "Parts":[
             {label:"Full Hood",
               img: "/assets/Ferrari/1_Full Hood.png",
-              target:[]
+              target:["Full_Hood"]
             },
             {label:"Full fenders",
               img: "/assets/Ferrari/1_Full Fender.png",
-              target:[]
+              target:["Full_Fenders"]
             },
             {label:"Front Bumper",
               img: "/assets/Ferrari/1_Front Bumper.png",
-              target:[]
+              target:["Front_Bumper"]
             },
             {label:"Side mirrors",
               img: "/assets/Ferrari/1_Side Mirror.png",
-              target:[]
+              target:["Side_Mirrors"]
             }
           ]
         },
@@ -430,27 +434,27 @@
           "Parts":[
             {label:"Half bonnet",
               img: "./assets/Ferrari/1_Front Bonnet.png",
-              target:[]
+              target:["Half_Bonnet"]
             },
             {label:"Front Bumper",
               img: "/assets/Ferrari/1_Front Bonnet.png",
-              target:[]
+              target:["Front_Bumper"]
             },
             {label:"Side mirrors",
               img: "/assets/Ferrari/1_Side Mirror.png",
-              target:[]
+              target:["Side_Mirrors"]
             }
           ]
         },
         "Door Defence":{
           "Parts":[
-            {label:"Door cups",
+            {label:"Door Cups",
               img: "/assets/Ferrari/1_Door cups.png",
-              target:[]
+              target:["Door_Cups"]
             },
             {label:"Door Edge",
               img: "/assets/Ferrari/1_Door Edges.png",
-              target:[]
+              target:["Door_Edge"]
             }
           ]
         }
@@ -458,10 +462,13 @@
       window.truckMenu = {
         "Full Wrap":{
           "Parts":[
-            {
+              {
               label:"Part1",
               img: "",
-              target:[]
+              target:[
+                "Full_Hood","Full_Fenders","Front_Bumper","Side_Mirrors",
+                "Half_Bonnet","Door_Edge","Full_Wrap_Body"
+              ]
             }
           ]
         },
@@ -469,19 +476,19 @@
           "Parts":[
             {label:"Full Hood",
               img: "/assets/Tesla Cyber Truck/1_Full Hood.png",
-              target:[]
+              target:["Full_Hood"]
             },
             {label:"Full fenders",
               img: "/assets/Tesla Cyber Truck/1_Full Fender.png",
-              target:[]
+              target:["Full_Fenders"]
             },
             {label:"Front Bumper",
               img: "/assets/Tesla Cyber Truck/1_Front Bumper.png",
-              target:[]
+              target:["Front_Bumper"]
             },
             {label:"Side mirrors",
               img: "/assets/Tesla Cyber Truck/1_Side Mirror.png",
-              target:[]
+              target:["Side_Mirrors"]
             }
           ]
         },
@@ -489,15 +496,15 @@
           "Parts":[
             {label:"Half bonnet",
               img: "./assets/Tesla Cyber Truck/1_Front Bonnet.png",
-              target:[]
+              target:["Half_Bonnet"]
             },
             {label:"Front Bumper",
               img: "/assets/Tesla Cyber Truck/1_Front Bonnet.png",
-              target:[]
+              target:["Front_Bumper"]
             },
             {label:"Side mirrors",
               img: "/assets/Tesla Cyber Truck/1_Side Mirror.png",
-              target:[]
+              target:["Side_Mirrors"]
             }
           ]
         },
@@ -505,7 +512,7 @@
           "Parts":[
             {label:"Door Edge",
               img: "/assets/Tesla Cyber Truck/1_Door Edges.png",
-              target:[]
+              target:["Door_Edge"]
             },
           ]
         }
@@ -518,13 +525,10 @@
         {label:"Lunaris Metallic Silver", color:"#acb7bc"},
         {label:"Oblivion Black", color:"#0b090a"},
         {label:"Polaris White", color:"#ffffff"},
-        {label:"Blue", color:"#252656"},
-        {label:"Head Light 50", color:"#302d28"},
-        {label:"Head Light 70", color:"#656565"},
-        {label:"Matte", color:"#fffafe"},
-        {label:"Green", color:"#3a4922"},
-        {label:"Purple", color:"#271631"},
-        {label:"Maroon", color:"#360101"},
+        {label:"Cobalt Blue", color:"#252656"},
+        {label:"Sparkle Chameleon", color:"#3a4922"},
+        {label:"Sparkle Purple", color:"#271631"},
+        {label:"Sparkle Red", color:"#360101"},
       ]
       window.truckMaterialMenu = [
         {label:"Heliodor Yellow", color:"#fff402"},
@@ -534,29 +538,43 @@
         {label:"Lunaris Metallic Silver", color:"#acb7bc"},
         {label:"Oblivion Black", color:"#0b090a"},
         {label:"Polaris White", color:"#ffffff"},
-        {label:"Blue", color:"#252656"},
-        {label:"Head Light 50", color:"#302d28"},
-        {label:"Head Light 70", color:"#656565"},
-        {label:"Matte", color:"#fffafe"},
-        {label:"Green", color:"#3a4922"},
-        {label:"Purple", color:"#271631"},
-        {label:"Maroon", color:"#360101"},
+        {label:"Cobalt Blue", color:"#252656"},
+        {label:"Sparkle Chameleon", color:"#3a4922"},
+        {label:"Sparkle Purple", color:"#271631"},
+        {label:"Sparkle Red", color:"#360101"},
       ]
       window.selectedOption = null;
       window.selectedParts = [];
       window.target = null;
       window.selectedMaterial = null;
 
+      function handleResetToBase(){
+        if(window.vechile_type=='car') window.applyBaseMaterial();
+      }
+
       function handleSelectedMaterial(materialLabel){
         document.getElementById(window.selectedMaterial)?.querySelector('.item-img')?.classList.remove('selected-item');
         document.getElementById(materialLabel)?.querySelector('.item-img')?.classList.add('selected-item');
         window.selectedMaterial = materialLabel;
+        const targets = [];
+        window[`${window.vechile_type}Menu`][window.selectedOption].Parts.map((data)=>{
+          if(selectedOption=='Full Wrap' && data.label=='Part1'){
+            targets.push(...data.target);
+          }
+          else if(window.selectedParts.includes(data.label)){
+            targets.push(...data.target);
+          }
+        })
         console.log({
           selectedMaterial: window.selectedMaterial,
           part: window.selectedParts,
+          target:targets,
           option: window.selectedOption,
           vechile: window.vechile_type
         });
+        targets.map((target)=>{
+          window.materialUpdate(window.vechile_type,window.selectedMaterial,target)
+        })
       }
 
       function handlePopulateMaterial(){
