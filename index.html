@@ -547,9 +547,34 @@
       window.selectedParts = [];
       window.target = null;
       window.selectedMaterial = null;
+      window.isFlipped = false;
 
       function handleResetToBase(){
-        window.applyBaseMaterial();
+        if(!window.isFlipped){
+          window.applyBaseMaterial();
+          window.isFlipped = true;
+        }else{
+          const targets = [];
+          window[`${window.vechile_type}Menu`][window.selectedOption].Parts.map((data)=>{
+            if(selectedOption=='Full Wrap' && data.label=='Part1'){
+              targets.push(...data.target);
+            }
+            else if(window.selectedParts.includes(data.label)){
+              targets.push(...data.target);
+            }
+          })
+          console.log({
+            selectedMaterial: window.selectedMaterial,
+            part: window.selectedParts,
+            target:targets,
+            option: window.selectedOption,
+            vechile: window.vechile_type
+          });
+          targets.map((target)=>{
+            window.materialUpdate(window.vechile_type,window.selectedMaterial,target)
+          })
+          window.isFlipped = false;
+        }
       }
 
       function handleSelectedMaterial(materialLabel){
