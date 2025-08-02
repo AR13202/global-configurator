@@ -509,6 +509,7 @@ const materialData = {
     },
     "Door_Cups": {
       "Heliodor Yellow": {
+        color:"#ffff00",
         baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -672,42 +673,42 @@ const materialData = {
   "truck": {
     "Full_Wrap_Body": {
       "Heliodor Yellow": {
-        color: "#ffff00",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Carnelion Red": {
-        color: "#ff0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Azurite Blue": {
-        color: "#2973ff",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Eclipse Black Matte": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
         metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
         roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
         clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
       },
       "Lunaris Metallic Silver": {
-        color: "#daeaea",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Lunaris_Metallic_Silver_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Oblivion Black": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -721,7 +722,7 @@ const materialData = {
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Cobalt Blue": {
-        color: "#03144c",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -730,21 +731,21 @@ const materialData = {
       
       
       "Sparkle Chameleon": {
-        color: "#5c752e",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Purple": {
-        color: "#2e1633",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Red": {
-        color: "#3c0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
@@ -753,42 +754,42 @@ const materialData = {
     },
     "Full_Hood": {
       "Heliodor Yellow": {
-        color: "#ffff00",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Carnelion Red": {
-        color: "#ff0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Azurite Blue": {
-        color: "#2973ff",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Eclipse Black Matte": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
         metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
         roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
         clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
       },
       "Lunaris Metallic Silver": {
-        color: "#daeaea",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Lunaris_Metallic_Silver_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Oblivion Black": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -802,7 +803,7 @@ const materialData = {
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Cobalt Blue": {
-        color: "#03144c",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -811,21 +812,21 @@ const materialData = {
       
       
       "Sparkle Chameleon": {
-        color: "#5c752e",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Purple": {
-        color: "#2e1633",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Red": {
-        color: "#3c0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
@@ -834,42 +835,42 @@ const materialData = {
     },
     "Full_Fenders": {
       "Heliodor Yellow": {
-        color: "#ffff00",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Carnelion Red": {
-        color: "#ff0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Azurite Blue": {
-        color: "#2973ff",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Eclipse Black Matte": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
         metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
         roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
         clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
       },
       "Lunaris Metallic Silver": {
-        color: "#daeaea",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Lunaris_Metallic_Silver_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Oblivion Black": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -883,7 +884,7 @@ const materialData = {
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Cobalt Blue": {
-        color: "#03144c",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -892,21 +893,21 @@ const materialData = {
       
       
       "Sparkle Chameleon": {
-        color: "#5c752e",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Purple": {
-        color: "#2e1633",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Red": {
-        color: "#3c0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
@@ -915,42 +916,42 @@ const materialData = {
     },
     "Front_Bumper": {
       "Heliodor Yellow": {
-        color: "#ffff00",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Carnelion Red": {
-        color: "#ff0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Azurite Blue": {
-        color: "#2973ff",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Eclipse Black Matte": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
         metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
         roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
         clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
       },
       "Lunaris Metallic Silver": {
-        color: "#daeaea",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Lunaris_Metallic_Silver_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Oblivion Black": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -964,7 +965,7 @@ const materialData = {
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Cobalt Blue": {
-        color: "#03144c",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -973,21 +974,21 @@ const materialData = {
       
       
       "Sparkle Chameleon": {
-        color: "#5c752e",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Purple": {
-        color: "#2e1633",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Red": {
-        color: "#3c0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
@@ -996,42 +997,42 @@ const materialData = {
     },
     "Side_Mirrors": {
       "Heliodor Yellow": {
-        color: "#ffff00",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Carnelion Red": {
-        color: "#ff0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Azurite Blue": {
-        color: "#2973ff",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Eclipse Black Matte": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
         metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
         roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
         clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
       },
       "Lunaris Metallic Silver": {
-        color: "#daeaea",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Lunaris_Metallic_Silver_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Oblivion Black": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -1045,7 +1046,7 @@ const materialData = {
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Cobalt Blue": {
-        color: "#03144c",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -1054,21 +1055,21 @@ const materialData = {
       
       
       "Sparkle Chameleon": {
-        color: "#5c752e",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Purple": {
-        color: "#2e1633",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Red": {
-        color: "#3c0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
@@ -1077,42 +1078,42 @@ const materialData = {
     },
     "Half_Bonnet": {
       "Heliodor Yellow": {
-        color: "#ffff00",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Carnelion Red": {
-        color: "#ff0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Azurite Blue": {
-        color: "#2973ff",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Eclipse Black Matte": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
         metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
         roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
         clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
       },
       "Lunaris Metallic Silver": {
-        color: "#daeaea",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Lunaris_Metallic_Silver_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Oblivion Black": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -1126,7 +1127,7 @@ const materialData = {
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Cobalt Blue": {
-        color: "#03144c",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -1135,21 +1136,21 @@ const materialData = {
       
       
       "Sparkle Chameleon": {
-        color: "#5c752e",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Purple": {
-        color: "#2e1633",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Red": {
-        color: "#3c0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
@@ -1158,42 +1159,42 @@ const materialData = {
     },
     "Door_Edge": {
       "Heliodor Yellow": {
-        color: "#ffff00",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Heliodor_Yellow_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Carnelion Red": {
-        color: "#ff0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Carnelion Red_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Azurite Blue": {
-        color: "#2973ff",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Azurite_Blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Eclipse Black Matte": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_3/Eclipse_Matte_Black_Diffuse.png",
         metalnessMap: "./assets/Set_3/Eclipse_Matte_Black_Metalness.png",
         roughnessMap: "./assets/Set_3/Eclipse_Matte_Black_Roughness.png",
         clearcoatMap: "./assets/Set_3/Eclipse_Matte_Black_Clearcoat.png"
       },
       "Lunaris Metallic Silver": {
-        color: "#daeaea",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Lunaris_Metallic_Silver_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Oblivion Black": {
-        color: "#000000",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Oblivion_Black_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -1207,7 +1208,7 @@ const materialData = {
         clearcoatMap: "./assets/Set_1/ACCH_Clearcoat.png"
       },
       "Cobalt Blue": {
-        color: "#03144c",
+        color: "#ffffff",
         baseMap: "./assets/Set_1/Cobalt_blue_Diffuse.png",
         metalnessMap: "./assets/Set_1/ACCH_Metalness.png",
         roughnessMap: "./assets/Set_1/ACCH_Roughness.png",
@@ -1216,21 +1217,21 @@ const materialData = {
       
       
       "Sparkle Chameleon": {
-        color: "#5c752e",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Astralite_Sparkle_Chameleon_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Purple": {
-        color: "#2e1633",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Iris_Sparkle_Purple_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
         clearcoatMap: "./assets/Set_2/LIAR_Clearcoat.png"
       },
       "Sparkle Red": {
-        color: "#3c0000",
+        color: "#ffffff",
         baseMap: "./assets/Set_2/Rubinite_Sparkle_Red_Diffuse.png",
         metalnessMap: "./assets/Set_2/LIAR_Metalness.png",
         roughnessMap: "./assets/Set_2/LIAR_Roughness.png",
@@ -1263,8 +1264,8 @@ renderer.setPixelRatio(window.devicePixelRatio);
 
 // ✅ Agx tone mapping
 renderer.toneMapping = THREE.ReinhardToneMapping;
-renderer.toneMappingExposure = 1;
-// renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMappingExposure = 0.8;
+renderer.outputColorSpace = THREE.SRGBColorSpace;
 
 
 // shadows
@@ -1326,7 +1327,7 @@ function setupRealShadows(model) {
   // --- Ground plane just below model ---
   const groundY = box.min.y - 0.01;
   const groundGeo = new THREE.PlaneGeometry(size.x * 3, size.z * 3);
-  const groundMat = new THREE.ShadowMaterial({ opacity: 0.3 });
+  const groundMat = new THREE.ShadowMaterial({ opacity: 0.1 });
   const ground = new THREE.Mesh(groundGeo, groundMat);
   ground.rotation.x = -Math.PI / 2;
   ground.position.y = groundY;
@@ -1334,16 +1335,17 @@ function setupRealShadows(model) {
   scene.add(ground);
 
   // --- Overhead light (only for shadows, not lighting) ---
-  const sunLight = new THREE.DirectionalLight(0xffffff, 0.1); // very dim
+  const sunLight = new THREE.DirectionalLight(0xffffff, 0.4); // very dim
   const lightHeight = Math.max(size.x, size.y, size.z) * 2;
   sunLight.position.set(center.x, center.y + lightHeight, center.z);
   sunLight.castShadow = true;
 
-  // Shadow quality
-  sunLight.shadow.mapSize.set(2048, 2048);
+  // --- Shadow softness controls ---
+  sunLight.shadow.mapSize.set(2048, 2048); // higher = sharper base
+  sunLight.shadow.radius = 6;              // ✅ blur radius (soft edges)
   sunLight.shadow.bias = -0.0005;
 
-  // Shadow camera bounds (tight around model)
+  // --- Shadow camera bounds ---
   const shadowCamSize = Math.max(size.x, size.z) * 1.5;
   sunLight.shadow.camera.left = -shadowCamSize;
   sunLight.shadow.camera.right = shadowCamSize;
@@ -1369,6 +1371,132 @@ function setupRealShadows(model) {
   currentShadow = ground;
   currentLight = sunLight;
 }
+
+// Create Contact Shadows (similar to r3f ContactShadows)
+function createContactShadows({
+  width = 2,
+  height = 2,
+  blur = 2.5,
+  opacity = 0.5,
+  resolution = 512,
+  far = 10,
+  darkness = 1,
+} = {}) {
+  // --- Render Target ---
+  const renderTarget = new THREE.WebGLRenderTarget(resolution, resolution);
+  renderTarget.texture.generateMipmaps = false;
+
+  // --- Orthographic Camera for shadow render ---
+  const shadowCamera = new THREE.OrthographicCamera(
+    -width / 2,
+    width / 2,
+    height / 2,
+    -height / 2,
+    0,
+    far
+  );
+  shadowCamera.rotation.x = -Math.PI / 2; // look down
+  shadowCamera.position.y = 5; // height above ground
+
+  // --- Plane to display the shadow ---
+  const planeGeometry = new THREE.PlaneGeometry(width, height);
+  const planeMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+      tDepth: { value: renderTarget.texture },
+      darkness: { value: darkness },
+      opacity: { value: opacity }
+    },
+    transparent: true,
+    depthWrite: false,
+    vertexShader: `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }`,
+    fragmentShader: `
+      varying vec2 vUv;
+      uniform sampler2D tDepth;
+      uniform float darkness;
+      uniform float opacity;
+      void main() {
+        float depth = texture2D(tDepth, vUv).r;
+        float shadow = 1.0 - depth;       // invert depth
+        shadow = pow(shadow, 2.0);        // soften curve
+        gl_FragColor = vec4(0.0, 0.0, 0.0, shadow * darkness * opacity);
+      }`
+  });
+
+  const shadowPlane = new THREE.Mesh(planeGeometry, planeMaterial);
+  shadowPlane.rotation.x = -Math.PI / 2;
+  shadowPlane.renderOrder = 2;
+
+  // --- Depth Material for shadow rendering ---
+  const depthMaterial = new THREE.MeshDepthMaterial();
+  depthMaterial.depthPacking = THREE.RGBADepthPacking;
+  depthMaterial.blending = THREE.NoBlending;
+
+  // --- Blur pass ---
+  const blurPass = (renderer, rt, amount) => {
+    const blurMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        tDiffuse: { value: rt.texture },
+        uDirection: { value: new THREE.Vector2(1, 0) },
+        uResolution: { value: new THREE.Vector2(resolution, resolution) },
+        uAmount: { value: amount },
+      },
+      vertexShader: `
+        varying vec2 vUv;
+        void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+        }`,
+      fragmentShader: `
+        varying vec2 vUv;
+        uniform sampler2D tDiffuse;
+        uniform vec2 uDirection;
+        uniform vec2 uResolution;
+        uniform float uAmount;
+        void main() {
+          vec2 texel = 1.0 / uResolution;
+          vec4 color = vec4(0.0);
+          for (int i = -4; i <= 4; i++) {
+            color += texture2D(tDiffuse, vUv + uDirection * texel * float(i) * uAmount);
+          }
+          gl_FragColor = color / 9.0;
+        }`
+    });
+
+    const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), blurMaterial);
+    const scene = new THREE.Scene();
+    scene.add(quad);
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+    renderer.setRenderTarget(rt);
+    renderer.render(scene, camera);
+    renderer.setRenderTarget(null);
+  };
+
+  // --- Update shadows each frame ---
+  const update = (renderer, model) => {
+    // Store original override
+    const originalOverride = model.parent.overrideMaterial;
+    model.parent.overrideMaterial = depthMaterial;
+
+    renderer.setRenderTarget(renderTarget);
+    renderer.render(model, shadowCamera);   // ✅ only render model into depth
+    renderer.setRenderTarget(null);
+
+    model.parent.overrideMaterial = originalOverride;
+
+    // Blur pass (soft shadow)
+    blurPass(renderer, renderTarget, blur);
+  };
+
+  return { shadowPlane, update, shadowCamera };
+}
+
+
 
 // preload models
 let preloadPromise = null;
@@ -1432,7 +1560,32 @@ async function loadModel(type) {
 
   // ✅ Shift model so it's centered at origin
   model.position.sub(center);
+  
+  // const shadow = new THREE.TextureLoader().load( '/assets/ferrari_ao.png' );
 
+  // const mesh = new THREE.Mesh(
+	// 	new THREE.PlaneGeometry( size.x+1,size.z+2 ),
+	// 	new THREE.MeshBasicMaterial( {
+	// 		map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true
+	// 	} )
+	// );
+	// // mesh.rotation.y =  -Math.PI / 2;
+	// mesh.rotation.x =  -Math.PI / 2;
+  // mesh.position.z -=0.4
+  // mesh.position.y = box.min.y - 0.01;
+  // // mesh.renderOrder=2;  
+  // currentShadow = mesh;   // ✅ keep reference
+  // scene.add( mesh );
+  // const { shadowPlane, update, shadowCamera } = createContactShadows({
+  //   width: 5,
+  //   height: 5,
+  //   blur: 2,
+  //   opacity: 0.7,
+  //   darkness: 1.2
+  // });
+
+  // scene.add(shadowPlane);
+  // update(renderer,model);
   scene.add(model);
 
   // --- Frame the model ---
@@ -1549,16 +1702,16 @@ function getWidthAndHeightFactor() {
   } else if (window.innerWidth < 1024) {
     heightFactor = 0.35;
   } else if (window.innerWidth < 1300) {
-    widthFactor = 0.65;
+    widthFactor = 0.64;
     heightFactor = 0.85;
   } else if (window.innerWidth < 1600) {
-    widthFactor = 0.68;
+    widthFactor = 0.66;
     heightFactor = 0.85;
   } else if (window.innerWidth < 1800) {
-    widthFactor = 0.72;
+    widthFactor = 0.71;
     heightFactor = 0.85;
   } else {
-    widthFactor = 0.72;
+    widthFactor = 0.71;
     heightFactor = 0.85;
   }
   return { widthFactor, heightFactor };
@@ -1603,7 +1756,7 @@ function smoothAdjustCameraDistance(delta = 0.5, duration = 500) {
 // adding environment map
 const rgbeLoader = new RGBELoader();
 rgbeLoader.load(
-  './assets/neutral.hdr', // <-- put neutral.hdr in your /assets folder
+  './assets/environments/pillars_1k.hdr', // <-- put neutral.hdr in your /assets folder
   (texture) => {
     texture.mapping = THREE.EquirectangularReflectionMapping;
 
@@ -1646,6 +1799,7 @@ const applyCachedTexture = async (url) => {
     return textureCache[url];
   }else{
     const texture = await textureLoader.loadAsync(url);
+    texture.colorSpace = THREE.SRGBColorSpace;
     texture.flipY = false;
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -1665,9 +1819,10 @@ async function updateMaterial(updates, materialRef) {
     clearcoatMap
   } = updates;
 
-  if (color) {
-    materialRef.color = new THREE.Color(color);
-  }
+  // if (color) {
+  //   materialRef.color = new THREE.Color(color);
+  // }
+  materialRef.color = null;
 
   // Load all maps in parallel
   const [base, metalness, roughness, clearcoat] = await Promise.all([
