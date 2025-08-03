@@ -999,10 +999,9 @@ button{
         display: flex;
         flex-direction: column;
     }
-    .canvas-container{
-        height: 85%;
-    }
     .call-container-wrapper{
+        position: absolute;
+        bottom: 0;
         height: 15%;
         display: flex;
         justify-content: center;
@@ -1026,6 +1025,8 @@ button{
         height: 22px;
     }
     .call-num{
+        background-color: #F0F0F0;
+        border: 1px solid #f0f0f0;
         width: fit-content;
         padding: 8px 40px;
         width: 150px;

@@ -1267,7 +1267,6 @@ renderer.toneMapping = THREE.ReinhardToneMapping;
 renderer.toneMappingExposure = 0.8;
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-
 // shadows
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; // soft shadows
@@ -1293,8 +1292,8 @@ controls.dampingFactor = 0.05;
 
 // Zoom in/out with scroll
 controls.enableZoom = true;
-controls.minDistance = 3;   // how close you can zoom
-controls.maxDistance = 5;  // how far you can zoom
+controls.minDistance = 4;   // how close you can zoom
+controls.maxDistance = 6;  // how far you can zoom
 controls.enablePan = true;
 
 // ✅ restrict vertical rotation
@@ -1342,7 +1341,7 @@ function setupRealShadows(model) {
 
   // --- Shadow softness controls ---
   sunLight.shadow.mapSize.set(2048, 2048); // higher = sharper base
-  sunLight.shadow.radius = 6;              // ✅ blur radius (soft edges)
+  sunLight.shadow.radius = 60;              // ✅ blur radius (soft edges)
   sunLight.shadow.bias = -0.0005;
 
   // --- Shadow camera bounds ---
@@ -1370,130 +1369,6 @@ function setupRealShadows(model) {
   // ✅ Save references for cleanup
   currentShadow = ground;
   currentLight = sunLight;
-}
-
-// Create Contact Shadows (similar to r3f ContactShadows)
-function createContactShadows({
-  width = 2,
-  height = 2,
-  blur = 2.5,
-  opacity = 0.5,
-  resolution = 512,
-  far = 10,
-  darkness = 1,
-} = {}) {
-  // --- Render Target ---
-  const renderTarget = new THREE.WebGLRenderTarget(resolution, resolution);
-  renderTarget.texture.generateMipmaps = false;
-
-  // --- Orthographic Camera for shadow render ---
-  const shadowCamera = new THREE.OrthographicCamera(
-    -width / 2,
-    width / 2,
-    height / 2,
-    -height / 2,
-    0,
-    far
-  );
-  shadowCamera.rotation.x = -Math.PI / 2; // look down
-  shadowCamera.position.y = 5; // height above ground
-
-  // --- Plane to display the shadow ---
-  const planeGeometry = new THREE.PlaneGeometry(width, height);
-  const planeMaterial = new THREE.ShaderMaterial({
-    uniforms: {
-      tDepth: { value: renderTarget.texture },
-      darkness: { value: darkness },
-      opacity: { value: opacity }
-    },
-    transparent: true,
-    depthWrite: false,
-    vertexShader: `
-      varying vec2 vUv;
-      void main() {
-        vUv = uv;
-        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-      }`,
-    fragmentShader: `
-      varying vec2 vUv;
-      uniform sampler2D tDepth;
-      uniform float darkness;
-      uniform float opacity;
-      void main() {
-        float depth = texture2D(tDepth, vUv).r;
-        float shadow = 1.0 - depth;       // invert depth
-        shadow = pow(shadow, 2.0);        // soften curve
-        gl_FragColor = vec4(0.0, 0.0, 0.0, shadow * darkness * opacity);
-      }`
-  });
-
-  const shadowPlane = new THREE.Mesh(planeGeometry, planeMaterial);
-  shadowPlane.rotation.x = -Math.PI / 2;
-  shadowPlane.renderOrder = 2;
-
-  // --- Depth Material for shadow rendering ---
-  const depthMaterial = new THREE.MeshDepthMaterial();
-  depthMaterial.depthPacking = THREE.RGBADepthPacking;
-  depthMaterial.blending = THREE.NoBlending;
-
-  // --- Blur pass ---
-  const blurPass = (renderer, rt, amount) => {
-    const blurMaterial = new THREE.ShaderMaterial({
-      uniforms: {
-        tDiffuse: { value: rt.texture },
-        uDirection: { value: new THREE.Vector2(1, 0) },
-        uResolution: { value: new THREE.Vector2(resolution, resolution) },
-        uAmount: { value: amount },
-      },
-      vertexShader: `
-        varying vec2 vUv;
-        void main() {
-          vUv = uv;
-          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-        }`,
-      fragmentShader: `
-        varying vec2 vUv;
-        uniform sampler2D tDiffuse;
-        uniform vec2 uDirection;
-        uniform vec2 uResolution;
-        uniform float uAmount;
-        void main() {
-          vec2 texel = 1.0 / uResolution;
-          vec4 color = vec4(0.0);
-          for (int i = -4; i <= 4; i++) {
-            color += texture2D(tDiffuse, vUv + uDirection * texel * float(i) * uAmount);
-          }
-          gl_FragColor = color / 9.0;
-        }`
-    });
-
-    const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), blurMaterial);
-    const scene = new THREE.Scene();
-    scene.add(quad);
-    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
-    renderer.setRenderTarget(rt);
-    renderer.render(scene, camera);
-    renderer.setRenderTarget(null);
-  };
-
-  // --- Update shadows each frame ---
-  const update = (renderer, model) => {
-    // Store original override
-    const originalOverride = model.parent.overrideMaterial;
-    model.parent.overrideMaterial = depthMaterial;
-
-    renderer.setRenderTarget(renderTarget);
-    renderer.render(model, shadowCamera);   // ✅ only render model into depth
-    renderer.setRenderTarget(null);
-
-    model.parent.overrideMaterial = originalOverride;
-
-    // Blur pass (soft shadow)
-    blurPass(renderer, renderTarget, blur);
-  };
-
-  return { shadowPlane, update, shadowCamera };
 }
 
 
@@ -1593,7 +1468,7 @@ async function loadModel(type) {
   const fov = camera.fov * (Math.PI / 180);
   let cameraDist = maxDim / (2 * Math.tan(fov / 2));
 
-  const padding = 1.2; // closer/farther control
+  const padding = 1.3; // closer/farther control
   cameraDist *= padding;
 
   // Diagonal camera angle
@@ -1703,16 +1578,12 @@ function getWidthAndHeightFactor() {
     heightFactor = 0.35;
   } else if (window.innerWidth < 1300) {
     widthFactor = 0.64;
-    heightFactor = 0.85;
   } else if (window.innerWidth < 1600) {
     widthFactor = 0.66;
-    heightFactor = 0.85;
   } else if (window.innerWidth < 1800) {
     widthFactor = 0.71;
-    heightFactor = 0.85;
   } else {
     widthFactor = 0.71;
-    heightFactor = 0.85;
   }
   return { widthFactor, heightFactor };
 }
@@ -1755,6 +1626,16 @@ function smoothAdjustCameraDistance(delta = 0.5, duration = 500) {
 
 // adding environment map
 const rgbeLoader = new RGBELoader();
+
+const backgroundTexture = new THREE.TextureLoader();
+backgroundTexture.load('./assets/gradient8.png',
+  (texture) => {
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    texture.colorSpace = THREE.SRGBColorSpace
+    scene.background = texture;
+  }
+)
+
 rgbeLoader.load(
   './assets/environments/pillars_1k.hdr', // <-- put neutral.hdr in your /assets folder
   (texture) => {
@@ -1799,7 +1680,7 @@ const applyCachedTexture = async (url) => {
     return textureCache[url];
   }else{
     const texture = await textureLoader.loadAsync(url);
-    texture.colorSpace = THREE.SRGBColorSpace;
+    // texture.colorSpace = THREE.SRGBColorSpace;
     texture.flipY = false;
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
@@ -1823,6 +1704,7 @@ async function updateMaterial(updates, materialRef) {
   //   materialRef.color = new THREE.Color(color);
   // }
   materialRef.color = null;
+  materialRef.vertexColors = false;
 
   // Load all maps in parallel
   const [base, metalness, roughness, clearcoat] = await Promise.all([
@@ -1833,10 +1715,22 @@ async function updateMaterial(updates, materialRef) {
   ]);
 
   // Assign maps once all are ready
+  if(base) base.colorSpace = THREE.SRGBColorSpace;
   materialRef.map = base || null;
+  
+  if(metalness) metalness.colorSpace = THREE.LinearSRGBColorSpace;
   materialRef.metalnessMap = metalness || null;
+  
+  if(roughness) roughness.colorSpace = THREE.LinearSRGBColorSpace;
   materialRef.roughnessMap = roughness || null;
+
+  if(clearcoat) clearcoat.colorSpace = THREE.LinearSRGBColorSpace;
   materialRef.clearcoatMap = clearcoat || null;
+
+  if(window.vechile_type=='truck'){
+    materialRef.roughness = 0.4
+  }
+
 
   // Now update once
   materialRef.needsUpdate = true;
