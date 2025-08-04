@@ -1435,22 +1435,43 @@ async function loadModel(type) {
 
   // ✅ Shift model so it's centered at origin
   model.position.sub(center);
-  
-  // const shadow = new THREE.TextureLoader().load( '/assets/ferrari_ao.png' );
 
-  // const mesh = new THREE.Mesh(
-	// 	new THREE.PlaneGeometry( size.x+1,size.z+2 ),
-	// 	new THREE.MeshBasicMaterial( {
-	// 		map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true
-	// 	} )
-	// );
-	// // mesh.rotation.y =  -Math.PI / 2;
-	// mesh.rotation.x =  -Math.PI / 2;
-  // mesh.position.z -=0.4
-  // mesh.position.y = box.min.y - 0.01;
-  // // mesh.renderOrder=2;  
-  // currentShadow = mesh;   // ✅ keep reference
-  // scene.add( mesh );
+  if(type=='car'){
+    const shadow = new THREE.TextureLoader().load( '/assets/car_shadow.png' );
+  
+    const mesh = new THREE.Mesh(
+      new THREE.PlaneGeometry( size.x+4.8,size.z+2.4 ),
+      new THREE.MeshBasicMaterial( {
+        map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true, premultipliedAlpha:true
+      } )
+    );
+    // mesh.rotation.y =  -Math.PI / 2;
+    mesh.rotation.x =  -Math.PI / 2;
+    // mesh.position.z -=0.4
+    mesh.position.y = box.min.y - 0.01;
+    mesh.position.z -=0.12;
+    // // mesh.renderOrder=2;  
+    currentShadow = mesh;   // ✅ keep reference
+    scene.add( mesh );
+  }else{
+    const shadow = new THREE.TextureLoader().load( './assets/truck_shadow.png' );
+  
+    const mesh = new THREE.Mesh(
+      new THREE.PlaneGeometry( size.x+5,size.z+2.4 ),
+      new THREE.MeshBasicMaterial( {
+        map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true, premultipliedAlpha:true
+      } )
+    );
+    // mesh.rotation.y =  -Math.PI / 2;
+    mesh.rotation.x =  -Math.PI / 2;
+    // mesh.position.x -=0.5
+    mesh.position.z -=0.04
+    mesh.position.y = -0.9;
+    // // mesh.renderOrder=2;  
+    currentShadow = mesh;   // ✅ keep reference
+    scene.add( mesh );
+  }
+  
   // const { shadowPlane, update, shadowCamera } = createContactShadows({
   //   width: 5,
   //   height: 5,
@@ -1494,7 +1515,7 @@ async function loadModel(type) {
   });
 
   currentModel = model;
-  setupRealShadows(model);
+  // setupRealShadows(model);
 }
 
 function removeCurrentModel() {
