@@ -1454,19 +1454,19 @@ async function loadModel(type) {
     currentShadow = mesh;   // ✅ keep reference
     scene.add( mesh );
   }else{
-    const shadow = new THREE.TextureLoader().load( './assets/truck_shadow.png' );
+    const shadow = new THREE.TextureLoader().load( './assets/truck_shadow.jpg' );
   
     const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry( size.x+5,size.z+2.4 ),
+      new THREE.PlaneGeometry( size.x+5.4,size.z+2.2 ),
       new THREE.MeshBasicMaterial( {
         map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true, premultipliedAlpha:true
       } )
     );
     // mesh.rotation.y =  -Math.PI / 2;
     mesh.rotation.x =  -Math.PI / 2;
-    // mesh.position.x -=0.5
-    mesh.position.z -=0.04
-    mesh.position.y = -0.9;
+    mesh.position.x -=0.025
+    mesh.position.z +=0.06
+    mesh.position.y = -0.95;
     // // mesh.renderOrder=2;  
     currentShadow = mesh;   // ✅ keep reference
     scene.add( mesh );
