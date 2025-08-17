@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { GLTFLoader } from 'https://unpkg.com/three@0.160.1/examples/jsm/loaders/GLTFLoader.js';
 import { OrbitControls } from 'https://unpkg.com/three@0.160.1/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from 'https://unpkg.com/three@0.160.1/examples/jsm/loaders/RGBELoader.js';
+import { GroundedSkybox } from 'https://unpkg.com/three@0.162.0/examples/jsm/objects/GroundedSkybox.js';
 
 
 let currentModel = null;
@@ -1274,7 +1275,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap; // soft shadows
 
 // Scene
 const scene = new THREE.Scene();
-
+let skybox;
 // Camera
 const camera = new THREE.PerspectiveCamera(
   60,
@@ -1282,7 +1283,7 @@ const camera = new THREE.PerspectiveCamera(
   0.1,
   1000
 );
-camera.position.set(0, 1.5, 3);
+camera.position.set(0, 1.5, 14);
 
 // Controls
 const controls = new OrbitControls(camera, renderer.domElement);
@@ -1292,8 +1293,8 @@ controls.dampingFactor = 0.05;
 
 // Zoom in/out with scroll
 controls.enableZoom = true;
-controls.minDistance = 4;   // how close you can zoom
-controls.maxDistance = 6;  // how far you can zoom
+controls.minDistance = 70;   // how close you can zoom
+controls.maxDistance = 80;  // how far you can zoom
 controls.enablePan = true;
 
 // ✅ restrict vertical rotation
@@ -1307,9 +1308,9 @@ controls.maxAzimuthAngle = Infinity;
 controls.update();
 
 
-const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(3, 10, 10);
-scene.add(dirLight);
+// const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+// dirLight.position.set(3, 10, 10);
+// scene.add(dirLight);
 
 function setupRealShadows(model) {
   // Enable shadows
@@ -1384,6 +1385,8 @@ function preLoadModels() {
     new Promise((resolve, reject) => {
       loader.load('./assets/Ferrari.glb',
         (gltf) => {
+          // gltf.scene.scale.multiplyScalar(4)
+          gltf.scene.scale.set(16,16,16);
           loadedModels.car = gltf.scene;
           console.log("car preloaded")
           resolve();
@@ -1395,8 +1398,11 @@ function preLoadModels() {
     new Promise((resolve, reject) => {
       loader.load('./assets/CyberTruck.glb',
         (gltf) => {
-          console.log("truck preloaded")
+          // gltf.scene.scale.multiplyScalar(4)
+          gltf.scene.scale.set(16,16,16);
           loadedModels.truck = gltf.scene;
+          console.log("truck preloaded")
+
           resolve();
         },
         undefined,
@@ -1435,21 +1441,25 @@ async function loadModel(type) {
 
   // ✅ Shift model so it's centered at origin
   model.position.sub(center);
+  // model.scale.multiplyFactor
 
   if(type=='car'){
     const shadow = new THREE.TextureLoader().load( '/assets/car_shadow.png' );
   
     const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry( size.x+4.8,size.z+2.4 ),
+      new THREE.PlaneGeometry( size.x+18.5,size.z-15),
       new THREE.MeshBasicMaterial( {
         map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true, premultipliedAlpha:true
       } )
     );
+    mesh.scale.multiplyScalar(2);
+    skybox.position.y = 6.5;
+
     // mesh.rotation.y =  -Math.PI / 2;
     mesh.rotation.x =  -Math.PI / 2;
     // mesh.position.z -=0.4
-    mesh.position.y = box.min.y - 0.01;
-    mesh.position.z -=0.12;
+    mesh.position.y = box.min.y - 0;
+    mesh.position.z -=3.4;
     // // mesh.renderOrder=2;  
     currentShadow = mesh;   // ✅ keep reference
     scene.add( mesh );
@@ -1457,32 +1467,35 @@ async function loadModel(type) {
     const shadow = new THREE.TextureLoader().load( './assets/truck_shadow.jpg' );
   
     const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry( size.x+5.4,size.z+2.2 ),
+      new THREE.PlaneGeometry( size.x+25,size.z-27),
       new THREE.MeshBasicMaterial( {
         map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true, premultipliedAlpha:true
       } )
     );
+    mesh.scale.multiplyScalar(2);
+    skybox.position.y = 1.5;
     // mesh.rotation.y =  -Math.PI / 2;
     mesh.rotation.x =  -Math.PI / 2;
     mesh.position.x -=0.025
-    mesh.position.z +=0.06
-    mesh.position.y = -0.95;
+    mesh.position.z +=1
+    mesh.position.y = -15;
     // // mesh.renderOrder=2;  
     currentShadow = mesh;   // ✅ keep reference
     scene.add( mesh );
   }
   
-  // const { shadowPlane, update, shadowCamera } = createContactShadows({
-  //   width: 5,
-  //   height: 5,
-  //   blur: 2,
-  //   opacity: 0.7,
-  //   darkness: 1.2
-  // });
 
-  // scene.add(shadowPlane);
-  // update(renderer,model);
+  // model.scale.multiplyScalar(4)
   scene.add(model);
+    // --- Shadows and materials ---
+  model.traverse((child) => {
+    // child.scale.multiplyScalar(1.1);
+    if (child.isMesh) {
+      child.material.envMapIntensity = 1;
+      child.material.needsUpdate = true;
+      child.castShadow = true;
+    }
+  });
 
   // --- Frame the model ---
   const maxDim = Math.max(size.x, size.y, size.z);
@@ -1505,14 +1518,6 @@ async function loadModel(type) {
   controls.target.set(0, 0, 0);
   controls.update();
 
-  // --- Shadows and materials ---
-  model.traverse((child) => {
-    if (child.isMesh) {
-      child.material.envMapIntensity = 1;
-      child.material.needsUpdate = true;
-      child.castShadow = true;
-    }
-  });
 
   currentModel = model;
   // setupRealShadows(model);
@@ -1658,14 +1663,15 @@ backgroundTexture.load('./assets/gradient8.png',
 )
 
 rgbeLoader.load(
-  './assets/environments/pillars_1k.hdr', // <-- put neutral.hdr in your /assets folder
+  './assets/Created_1.hdr',
   (texture) => {
     texture.mapping = THREE.EquirectangularReflectionMapping;
-
     // Apply environment to scene
     scene.environment = texture;
-    // scene.environmentIntensity = 1.5;
+    scene.environmentIntensity = 1.5;
     // scene.background = texture; // uncomment if you want the HDR visible
+    skybox = new GroundedSkybox(texture, 15, 100); // wide & shallow
+    scene.add(skybox);
   },
   undefined,
   (err) => {
@@ -1677,6 +1683,7 @@ animate();
 preLoadModels().then(() => {
   // 👇 choose which model to load first
   loadModel("car");  // or "truck"
+  loadModel("truck");  // or "truck"
 });
 
 function materialUpdate(vechileType, materialName, partName) {
