@@ -1683,7 +1683,7 @@ animate();
 preLoadModels().then(() => {
   // 👇 choose which model to load first
   loadModel("car");  // or "truck"
-  loadModel("truck");  // or "truck"
+  // loadModel("truck");  // or "truck"
 });
 
 function materialUpdate(vechileType, materialName, partName) {
