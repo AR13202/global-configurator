@@ -1293,8 +1293,8 @@ controls.dampingFactor = 0.05;
 
 // Zoom in/out with scroll
 controls.enableZoom = true;
-controls.minDistance = 70;   // how close you can zoom
-controls.maxDistance = 80;  // how far you can zoom
+controls.minDistance = 130;   // how close you can zoom
+controls.maxDistance = 160;  // how far you can zoom
 controls.enablePan = true;
 
 // ✅ restrict vertical rotation
@@ -1308,9 +1308,9 @@ controls.maxAzimuthAngle = Infinity;
 controls.update();
 
 
-// const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-// dirLight.position.set(3, 10, 10);
-// scene.add(dirLight);
+const dirLight = new THREE.DirectionalLight(0xffffff, 1);
+dirLight.position.set(3, 10, 10);
+scene.add(dirLight);
 
 function setupRealShadows(model) {
   // Enable shadows
@@ -1386,7 +1386,7 @@ function preLoadModels() {
       loader.load('./assets/Ferrari.glb',
         (gltf) => {
           // gltf.scene.scale.multiplyScalar(4)
-          gltf.scene.scale.set(16,16,16);
+          gltf.scene.scale.set(32,32,32);
           loadedModels.car = gltf.scene;
           console.log("car preloaded")
           resolve();
@@ -1399,7 +1399,7 @@ function preLoadModels() {
       loader.load('./assets/CyberTruck.glb',
         (gltf) => {
           // gltf.scene.scale.multiplyScalar(4)
-          gltf.scene.scale.set(16,16,16);
+          gltf.scene.scale.set(32,32,32);
           loadedModels.truck = gltf.scene;
           console.log("truck preloaded")
 
@@ -1447,13 +1447,13 @@ async function loadModel(type) {
     const shadow = new THREE.TextureLoader().load( '/assets/car_shadow.png' );
   
     const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry( size.x+18.5,size.z-15),
+      new THREE.PlaneGeometry( size.x+40.5,size.z-35),
       new THREE.MeshBasicMaterial( {
         map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true, premultipliedAlpha:true
       } )
     );
     mesh.scale.multiplyScalar(2);
-    skybox.position.y = 6.5;
+    skybox.position.y = 45;
 
     // mesh.rotation.y =  -Math.PI / 2;
     mesh.rotation.x =  -Math.PI / 2;
@@ -1467,18 +1467,18 @@ async function loadModel(type) {
     const shadow = new THREE.TextureLoader().load( './assets/truck_shadow.jpg' );
   
     const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry( size.x+25,size.z-27),
+      new THREE.PlaneGeometry( size.x+50,size.z-47),
       new THREE.MeshBasicMaterial( {
         map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true, premultipliedAlpha:true
       } )
     );
     mesh.scale.multiplyScalar(2);
-    skybox.position.y = 1.5;
+    skybox.position.y = 35;
     // mesh.rotation.y =  -Math.PI / 2;
     mesh.rotation.x =  -Math.PI / 2;
     mesh.position.x -=0.025
     mesh.position.z +=1
-    mesh.position.y = -15;
+    mesh.position.y = -30;
     // // mesh.renderOrder=2;  
     currentShadow = mesh;   // ✅ keep reference
     scene.add( mesh );
@@ -1658,26 +1658,39 @@ backgroundTexture.load('./assets/gradient8.png',
   (texture) => {
     texture.mapping = THREE.EquirectangularReflectionMapping;
     texture.colorSpace = THREE.SRGBColorSpace
-    scene.background = texture;
+    // scene.background = texture;
   }
 )
 
 rgbeLoader.load(
-  './assets/Created_1.hdr',
+  './assets/environments/pillars_1k.hdr',
   (texture) => {
     texture.mapping = THREE.EquirectangularReflectionMapping;
     // Apply environment to scene
-    scene.environment = texture;
-    scene.environmentIntensity = 1.5;
+    // scene.environment = texture;
+    // scene.environmentIntensity = 1.5;
     // scene.background = texture; // uncomment if you want the HDR visible
-    skybox = new GroundedSkybox(texture, 15, 100); // wide & shallow
-    scene.add(skybox);
+    // skybox = new GroundedSkybox(texture, 15, 100); // wide & shallow
+    // scene.add(skybox);
   },
   undefined,
   (err) => {
     console.error('Error loading HDR environment', err);
   }
 );
+
+rgbeLoader.load(
+  './assets/tes_10.hdr',
+  (texture)=>{
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    skybox = new GroundedSkybox(texture,65,400);
+    // skybox.rotation.y = Math.PI
+    scene.add(skybox);
+    scene.environment = texture;
+    scene.environmentIntensity = 2;
+    // scene.background = texture;
+  }
+)
 
 animate();
 preLoadModels().then(() => {
