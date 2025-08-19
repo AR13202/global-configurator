@@ -1684,7 +1684,7 @@ rgbeLoader.load(
   (texture)=>{
     texture.mapping = THREE.EquirectangularReflectionMapping;
     skybox = new GroundedSkybox(texture,65,400);
-    // skybox.rotation.y = Math.PI
+    skybox.rotation.y = Math.PI/2;
     scene.add(skybox);
     scene.environment = texture;
     scene.environmentIntensity = 2;
