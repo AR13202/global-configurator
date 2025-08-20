@@ -1680,7 +1680,7 @@ rgbeLoader.load(
 );
 
 rgbeLoader.load(
-  './assets/tes_10.hdr',
+  './assets/tes_11.hdr',
   (texture)=>{
     texture.mapping = THREE.EquirectangularReflectionMapping;
     skybox = new GroundedSkybox(texture,65,400);
