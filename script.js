@@ -1687,7 +1687,7 @@ rgbeLoader.load(
     skybox.rotation.y = Math.PI/2;
     scene.add(skybox);
     scene.environment = texture;
-    scene.environmentIntensity = 2;
+    scene.environmentIntensity = 5;
     // scene.background = texture;
   }
 )
