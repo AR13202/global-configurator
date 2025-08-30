@@ -1613,7 +1613,7 @@ rgbeLoader.load(
   (texture)=>{
     texture.mapping = THREE.EquirectangularReflectionMapping;
     scene.environment = texture;
-    scene.environmentIntensity = 1;
+    scene.environmentIntensity = 1.5;
     const loader = new GLTFLoader();
     loader.load(
       './assets/scene1.glb',
@@ -1621,19 +1621,19 @@ rgbeLoader.load(
         scene.add(gltf.scene)
       }
     )
-    const DirectionalLight1  = new THREE.DirectionalLight(0xffffff,1);
+    const DirectionalLight1  = new THREE.DirectionalLight(0xffffff,1.5);
     DirectionalLight1.position.set(5.342,4.363,3.165); 
 
-    const DirectionalLight2  = new THREE.DirectionalLight(0xffffff,1);
+    const DirectionalLight2  = new THREE.DirectionalLight(0xffffff,1.5);
     DirectionalLight2.position.set(-5.091,3.350,2.730);
     
     const pointLight1 = new THREE.PointLight(0xffffff,1,100);
     pointLight1.position.set(-0.169,0.872,0.383);
 
-    const pointLight2 = new THREE.PointLight(0xffffff,1,100);
+    const pointLight2 = new THREE.PointLight(0xffffff,1.5,100);
     pointLight2.position.set(-1.711,1.883,1.113);
 
-    const pointLight3 = new THREE.PointLight(0xffffff,1,100);
+    const pointLight3 = new THREE.PointLight(0xffffff,1.5,100);
     pointLight3.position.set(1.597, 1.167, 2.554);
     
     scene.add(DirectionalLight1);
