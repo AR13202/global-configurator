@@ -1293,84 +1293,19 @@ controls.dampingFactor = 0.05;
 
 // Zoom in/out with scroll
 controls.enableZoom = true;
-controls.minDistance = 130;   // how close you can zoom
-controls.maxDistance = 160;  // how far you can zoom
-controls.enablePan = true;
+controls.minDistance = 4.5;   // how close you can zoom
+controls.maxDistance = 6;  // how far you can zoom
+controls.enablePan = false;
 
 // ✅ restrict vertical rotation
 controls.minPolarAngle = Math.PI / 6;   // lowest angle (30° from top)
-controls.maxPolarAngle = Math.PI / 2;   // highest angle (90° = level with ground)
+controls.maxPolarAngle = Math.PI / 2.1;   // highest angle (90° = level with ground)
 
 // allow horizontal rotation (full orbit)
 controls.minAzimuthAngle = -Infinity;
 controls.maxAzimuthAngle = Infinity;
 
 controls.update();
-
-
-const dirLight = new THREE.DirectionalLight(0xffffff, 1);
-dirLight.position.set(3, 10, 10);
-scene.add(dirLight);
-
-function setupRealShadows(model) {
-  // Enable shadows
-  renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-
-  // --- Bounding box for model ---
-  const box = new THREE.Box3().setFromObject(model);
-  const size = new THREE.Vector3();
-  const center = new THREE.Vector3();
-  box.getSize(size);
-  box.getCenter(center);
-
-  // --- Ground plane just below model ---
-  const groundY = box.min.y - 0.01;
-  const groundGeo = new THREE.PlaneGeometry(size.x * 3, size.z * 3);
-  const groundMat = new THREE.ShadowMaterial({ opacity: 0.1 });
-  const ground = new THREE.Mesh(groundGeo, groundMat);
-  ground.rotation.x = -Math.PI / 2;
-  ground.position.y = groundY;
-  ground.receiveShadow = true;
-  scene.add(ground);
-
-  // --- Overhead light (only for shadows, not lighting) ---
-  const sunLight = new THREE.DirectionalLight(0xffffff, 0.4); // very dim
-  const lightHeight = Math.max(size.x, size.y, size.z) * 2;
-  sunLight.position.set(center.x, center.y + lightHeight, center.z);
-  sunLight.castShadow = true;
-
-  // --- Shadow softness controls ---
-  sunLight.shadow.mapSize.set(2048, 2048); // higher = sharper base
-  sunLight.shadow.radius = 60;              // ✅ blur radius (soft edges)
-  sunLight.shadow.bias = -0.0005;
-
-  // --- Shadow camera bounds ---
-  const shadowCamSize = Math.max(size.x, size.z) * 1.5;
-  sunLight.shadow.camera.left = -shadowCamSize;
-  sunLight.shadow.camera.right = shadowCamSize;
-  sunLight.shadow.camera.top = shadowCamSize;
-  sunLight.shadow.camera.bottom = -shadowCamSize;
-  sunLight.shadow.camera.near = 0.1;
-  sunLight.shadow.camera.far = lightHeight * 3;
-
-  // Aim light at model
-  sunLight.target.position.copy(center);
-  scene.add(sunLight);
-  scene.add(sunLight.target);
-
-  // --- Model casts shadows ---
-  model.traverse((child) => {
-    if (child.isMesh) {
-      child.castShadow = true;
-      child.receiveShadow = false;
-    }
-  });
-
-  // ✅ Save references for cleanup
-  currentShadow = ground;
-  currentLight = sunLight;
-}
 
 
 
@@ -1385,8 +1320,6 @@ function preLoadModels() {
     new Promise((resolve, reject) => {
       loader.load('./assets/Ferrari.glb',
         (gltf) => {
-          // gltf.scene.scale.multiplyScalar(4)
-          gltf.scene.scale.set(32,32,32);
           loadedModels.car = gltf.scene;
           console.log("car preloaded")
           resolve();
@@ -1398,11 +1331,8 @@ function preLoadModels() {
     new Promise((resolve, reject) => {
       loader.load('./assets/CyberTruck.glb',
         (gltf) => {
-          // gltf.scene.scale.multiplyScalar(4)
-          gltf.scene.scale.set(32,32,32);
           loadedModels.truck = gltf.scene;
           console.log("truck preloaded")
-
           resolve();
         },
         undefined,
@@ -1440,26 +1370,24 @@ async function loadModel(type) {
   box.getCenter(center);
 
   // ✅ Shift model so it's centered at origin
-  model.position.sub(center);
+  // model.position.sub(center);
   // model.scale.multiplyFactor
 
   if(type=='car'){
     const shadow = new THREE.TextureLoader().load( '/assets/car_shadow.png' );
   
     const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry( size.x+40.5,size.z-35),
+      new THREE.PlaneGeometry( size.x+4.5,size.z+2),
       new THREE.MeshBasicMaterial( {
         map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true, premultipliedAlpha:true
       } )
     );
-    mesh.scale.multiplyScalar(2);
-    skybox.position.y = 45;
 
     // mesh.rotation.y =  -Math.PI / 2;
     mesh.rotation.x =  -Math.PI / 2;
     // mesh.position.z -=0.4
-    mesh.position.y = box.min.y - 0;
-    mesh.position.z -=3.4;
+    // mesh.position.y = box.min.y - 0;
+    // mesh.position.z -=3.4;
     // // mesh.renderOrder=2;  
     currentShadow = mesh;   // ✅ keep reference
     scene.add( mesh );
@@ -1467,18 +1395,16 @@ async function loadModel(type) {
     const shadow = new THREE.TextureLoader().load( './assets/truck_shadow.jpg' );
   
     const mesh = new THREE.Mesh(
-      new THREE.PlaneGeometry( size.x+50,size.z-47),
+      new THREE.PlaneGeometry( size.x+5,size.z+2.2),
       new THREE.MeshBasicMaterial( {
         map:shadow,blending: THREE.MultiplyBlending, toneMapped: false, transparent: true, premultipliedAlpha:true
       } )
     );
-    mesh.scale.multiplyScalar(2);
-    skybox.position.y = 35;
     // mesh.rotation.y =  -Math.PI / 2;
     mesh.rotation.x =  -Math.PI / 2;
     mesh.position.x -=0.025
-    mesh.position.z +=1
-    mesh.position.y = -30;
+    // mesh.position.z +=1
+    // mesh.position.y = -30;
     // // mesh.renderOrder=2;  
     currentShadow = mesh;   // ✅ keep reference
     scene.add( mesh );
@@ -1520,6 +1446,9 @@ async function loadModel(type) {
 
 
   currentModel = model;
+
+  applyBaseMaterial(type);
+
   // setupRealShadows(model);
 }
 
@@ -1654,41 +1583,64 @@ function smoothAdjustCameraDistance(delta = 0.5, duration = 500) {
 const rgbeLoader = new RGBELoader();
 
 const backgroundTexture = new THREE.TextureLoader();
-backgroundTexture.load('./assets/gradient8.png',
-  (texture) => {
-    texture.mapping = THREE.EquirectangularReflectionMapping;
-    texture.colorSpace = THREE.SRGBColorSpace
-    // scene.background = texture;
-  }
-)
+// backgroundTexture.load('./assets/gradient8.png',
+//   (texture) => {
+//     texture.mapping = THREE.EquirectangularReflectionMapping;
+//     texture.colorSpace = THREE.SRGBColorSpace
+//     // scene.background = texture;
+//   }
+// )
+
+// rgbeLoader.load(
+//   './assets/environments/pillars_1k.hdr',
+//   (texture) => {
+//     texture.mapping = THREE.EquirectangularReflectionMapping;
+//     // Apply environment to scene
+//     // scene.environment = texture;
+//     // scene.environmentIntensity = 1.5;
+//     // scene.background = texture; // uncomment if you want the HDR visible
+//     // skybox = new GroundedSkybox(texture, 15, 100); // wide & shallow
+//     // scene.add(skybox);
+//   },
+//   undefined,
+//   (err) => {
+//     console.error('Error loading HDR environment', err);
+//   }
+// );
 
 rgbeLoader.load(
-  './assets/environments/pillars_1k.hdr',
-  (texture) => {
-    texture.mapping = THREE.EquirectangularReflectionMapping;
-    // Apply environment to scene
-    // scene.environment = texture;
-    // scene.environmentIntensity = 1.5;
-    // scene.background = texture; // uncomment if you want the HDR visible
-    // skybox = new GroundedSkybox(texture, 15, 100); // wide & shallow
-    // scene.add(skybox);
-  },
-  undefined,
-  (err) => {
-    console.error('Error loading HDR environment', err);
-  }
-);
-
-rgbeLoader.load(
-  './assets/tes_11.hdr',
+  './assets/Hdri.hdr',
   (texture)=>{
     texture.mapping = THREE.EquirectangularReflectionMapping;
-    skybox = new GroundedSkybox(texture,65,400);
-    skybox.rotation.y = Math.PI/2;
-    scene.add(skybox);
     scene.environment = texture;
-    scene.environmentIntensity = 2;
-    // scene.background = texture;
+    scene.environmentIntensity = 1;
+    const loader = new GLTFLoader();
+    loader.load(
+      './assets/scene1.glb',
+      (gltf)=>{
+        scene.add(gltf.scene)
+      }
+    )
+    const DirectionalLight1  = new THREE.DirectionalLight(0xffffff,1);
+    DirectionalLight1.position.set(5.342,4.363,3.165); 
+
+    const DirectionalLight2  = new THREE.DirectionalLight(0xffffff,1);
+    DirectionalLight2.position.set(-5.091,3.350,2.730);
+    
+    const pointLight1 = new THREE.PointLight(0xffffff,1,100);
+    pointLight1.position.set(-0.169,0.872,0.383);
+
+    const pointLight2 = new THREE.PointLight(0xffffff,1,100);
+    pointLight2.position.set(-1.711,1.883,1.113);
+
+    const pointLight3 = new THREE.PointLight(0xffffff,1,100);
+    pointLight3.position.set(1.597, 1.167, 2.554);
+    
+    scene.add(DirectionalLight1);
+    scene.add(DirectionalLight2);
+    scene.add(pointLight1);
+    scene.add(pointLight2);
+    scene.add(pointLight3);
   }
 )
 
@@ -1769,7 +1721,7 @@ async function updateMaterial(updates, materialRef) {
   materialRef.clearcoatMap = clearcoat || null;
 
   if(window.vechile_type=='truck'){
-    materialRef.roughness = 0.4
+    materialRef.roughness = 0.5
   }
 
 
@@ -1777,7 +1729,7 @@ async function updateMaterial(updates, materialRef) {
   materialRef.needsUpdate = true;
 }
 
-function applyBaseMaterial(){
+function applyBaseMaterial(vechileType=null){
   const targets = [
                 "Full_Hood","Full_Fenders","Side_Mirrors",
                 "Half_Bonnet","Front_Bumper","Door_Cups",
@@ -1787,10 +1739,10 @@ function applyBaseMaterial(){
     currentModel.traverse((child)=>{
       if(child.isMesh){
         if(targets.includes(child.name)){
-          if(window.vechile_type=='car'){
+          if(window.vechile_type=='car' || vechileType == 'car'){
             const material = baseMaterial
             updateMaterial(material, child.material);
-          }else{
+          }else if (window.vechile_type=='truck' || vechileType == 'truck'){
             const material = baseMaterialCT
             updateMaterial(material, child.material);
 

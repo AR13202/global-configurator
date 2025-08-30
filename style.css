@@ -256,7 +256,7 @@ button{
         align-items: center;
         gap: 10px;
         font-weight: 600;
-        color: black;
+        color: white;
     }
     .accessibility-options-btn{
         background-color: transparent;
@@ -395,12 +395,13 @@ button{
         height: 13px;
     }
     .call-num{
-        border: 0.94px solid #00000054;
+        /* border: 0.94px solid #00000054; */
         padding: 5px 10px;
         border-radius: 5px;
         font-size: 12px;
         width: 30%;
         text-align: center;
+        background-color: #e0e0e0;
     }
 
     /* FAQS */
