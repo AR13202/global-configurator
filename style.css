@@ -1109,6 +1109,7 @@ button{
         display: flex;
         flex-direction: column;
         justify-content: center;
+        min-height: 380px;
     }
     .faqs-container{
         height: 90%;
@@ -1196,6 +1197,8 @@ button{
         position: relative;
         background-color: #1C1C1C;
         height: 55%;
+        min-height: 160px;
+
     }
     .footer-logo{
         position: absolute;
@@ -1394,6 +1397,7 @@ button{
         display: flex;
         flex-direction: column;
         justify-content: center;
+        min-height: 440px;
     }
     .faqs-container{
         height: 90%;
@@ -1482,6 +1486,7 @@ button{
         position: relative;
         background-color: #1C1C1C;
         height: 55%;
+        min-height: 155px;
     }
     .footer-logo{
         position: absolute;
