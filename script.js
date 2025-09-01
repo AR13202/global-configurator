@@ -1532,11 +1532,11 @@ function getWidthAndHeightFactor() {
   } else if (window.innerWidth < 1024) {
     heightFactor = 0.35;
   } else if (window.innerWidth < 1300) {
-    widthFactor = 0.64;
+    widthFactor = 0.65;
   } else if (window.innerWidth < 1600) {
-    widthFactor = 0.66;
+    widthFactor = 0.68;
   } else if (window.innerWidth < 1800) {
-    widthFactor = 0.71;
+    widthFactor = 0.72;
   } else {
     widthFactor = 0.71;
   }
