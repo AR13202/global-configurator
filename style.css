@@ -185,38 +185,42 @@ button{
         justify-content: center;
         height: 90%;
         padding: 0 10px;
-        gap: 5px;
+        gap: 10px;
     }
     .sports-car, .truck{
         cursor: pointer;
+        box-shadow: 0px 0px 2px 0px #000;
         width: 40%;
         height: 75%;
         border-radius: 2px;
         font-family: 'Bebas Neue', sans-serif;
         font-weight: 400;
-        padding-top: 5px;
-        padding-left: 5px;
-        padding-right: 5px;
         display: flex;
         flex-direction: column; 
         gap: 1px;
         color: white;
-        background-color: black;
+        position: relative;
     }
     .sports-car img, .truck img{
         width: 100%;
-        height: 80%;
+        height: 100%;
+        /* border: 1px solid red; */
         object-fit: cover;
+        border-radius: 2px;
         background-color: white;
     }
     .sports-car div, .truck div{
         height: 20%;
         display: flex;
         align-items: center;
-        padding-left: 2px;
+        /* padding-left: 2px; */
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        z-index: 1;
+        /* background-color: red; */
     }
     .sports-car:hover,.truck:hover{
-        border: 1px solid black;
         opacity: 0.8;
     }
     .configurator-section{
@@ -681,10 +685,6 @@ button{
         font-weight: 400;
         font-size: 30px;
     }
-    .sports-car:hover,.truck:hover{
-        border: 1px solid black;
-        opacity: 0.8;
-    }
     .configurator-section{
         height: 100dvh;
         position: relative;
@@ -708,7 +708,7 @@ button{
         padding-left: 16px;
     }
     .faqs-section{
-        height: 35dvh;
+        height: 45dvh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -981,10 +981,11 @@ button{
         height: 90%;
         padding: 0 20px;
         gap: 20px;
+        /* border: 5px solid red; */
     }
-    .sports-car:hover,.truck:hover{
-        border: 1px solid black;
-        opacity: 0.8;
+    .sports-car , .truck{
+        width: 25%;
+        height: 80%;
     }
     .configurator-section{
         height: 100dvh;
@@ -1105,7 +1106,7 @@ button{
         width: 50%;
     }
     .faqs-section{
-        height: 90dvh;
+        height: 100dvh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1361,18 +1362,6 @@ button{
         font-weight: 400;
         font-size: 60px;
     }
-    .vechile-section-container{
-        display: flex;
-        height: 80%;
-        padding: 0 20px;
-        gap: 20px;
-    }
-    .sports-car img, .truck img{
-        height: 85%;
-    }
-    .sports-car div, .truck div{
-        height: 15%;
-    }
     .configurator-section{
         height: 100dvh;
         position: relative;
@@ -1393,7 +1382,7 @@ button{
         height: 20%;
     }
     .faqs-section{
-        height: 60dvh;
+        height: 70dvh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1646,24 +1635,8 @@ button{
         font-weight: 400;
         font-size: 60px;
     }
-    .vechile-section-container{
-        display: flex;
-        width: 100%;
-        justify-content: center;
-        height: 90%;
-        padding: 0 20px;
-        padding-top: 40px;
-        gap: 20px;
-    }
     .sports-car,.truck{
-        width: 25%;
-    }
-    .sports-car img, .truck img{
-        height: 85%;
-    }
-    .sports-car div, .truck div{
-        height: 15%;
-        font-size: 26px;
+        width: 24%;
     }
     .configurator-section{
         height: 100dvh;
@@ -1689,7 +1662,7 @@ button{
         height: 15%;
     }
     .faqs-section{
-        height: 50dvh;
+        height: 60dvh;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1950,26 +1923,12 @@ button{
         font-weight: 400;
         font-size: 70px;
     }
-    .vechile-section-container{
-        display: flex;
-        height: 80%;
-        padding: 0 20px;
-        gap: 20px;
-        width: 70%;
-        margin: auto;
-    }
-    .sports-car img, .truck img{
-        height: 90%;
-    }
-    .sports-car div, .truck div{
-        height: 10%;
-    }
     .configurator-section{
         height: 100dvh;
         position: relative;
     }
     .faqs-section{
-        height: 60dvh;
+        height: 70dvh;
         display: flex;
         flex-direction: column;
         justify-content: center;
