@@ -966,9 +966,6 @@ button{
         font-weight: 400;
         font-size: 50px;
     }
-    .sports-car, .truck{
-        width: 30%;
-    }
     .sports-car div, .truck div{
         height: 20%;
         font-size: 25px;
@@ -1106,7 +1103,8 @@ button{
         width: 50%;
     }
     .faqs-section{
-        height: 100dvh;
+        min-height: 580px;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1349,7 +1347,7 @@ button{
         flex-direction: column;
     }
     .sports-car,.truck{
-        width: 27.5%;;
+        width: 25%;;
     }
     .section-heading{
         height: 10%;
@@ -1382,7 +1380,7 @@ button{
         height: 20%;
     }
     .faqs-section{
-        height: 70dvh;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1636,7 +1634,7 @@ button{
         font-size: 60px;
     }
     .sports-car,.truck{
-        width: 24%;
+        width: 22%;
     }
     .configurator-section{
         height: 100dvh;
@@ -1662,7 +1660,7 @@ button{
         height: 15%;
     }
     .faqs-section{
-        height: 60dvh;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -1928,7 +1926,7 @@ button{
         position: relative;
     }
     .faqs-section{
-        height: 70dvh;
+        height: auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
